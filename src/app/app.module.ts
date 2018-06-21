@@ -5,7 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { HowMuch } from '../pages/get-started/how-much';
+import { HowMuch } from '../pages/how-much/how-much';
 import { HowLong } from '../pages/how-long/how-long';
 
 import { StatusBar } from '@ionic-native/status-bar';

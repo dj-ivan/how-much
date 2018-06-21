@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { HowMuch } from '../pages/get-started/how-much';
+import { HowMuch } from '../pages/how-much/how-much';
 import { HowLong } from '../pages/how-long/how-long';
 
 @Component({
