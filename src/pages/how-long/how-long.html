@@ -7,8 +7,13 @@
     </div>  
   <form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
     <div *ngIf="textBoxVisible" style="text-align: center">
-      <ion-item style="margin-top:170px; max-width:85%; display:inline-block;">
-        <ion-input type="number" formControlName="budgetLength" required [placeholder]="'When do you set your next budget?'"></ion-input>
+      <ion-item style="margin-top:100px; max-width:80%; display:inline-block;">
+        <ion-label>How long?</ion-label>
+        <ion-select formControlName="budgetLength">
+          <ion-option value="w">Weekly</ion-option>
+          <ion-option value="bi">Bi-Weekly</ion-option>
+          <ion-option value="m">Monthly</ion-option>
+        </ion-select>
       </ion-item>
       <button type="submit" ion-button icon-only large class="arrow-button">
           <ion-icon name="arrow-dropright"></ion-icon>

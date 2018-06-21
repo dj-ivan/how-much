@@ -25,8 +25,7 @@ export class HowLong {
       // userName: [''],
       // email: [''],
       // password: [''],
-      budgetLength: ['', Validators.required],
-      budgetLengthIndication: ['', Validators.required]
+      budgetLength: ['', Validators.required]
     });
   }
 
