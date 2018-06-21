@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CacheService } from '../services/cache-service';
+import { OverviewPage } from '../pages/overview/overview';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CacheService } from '../services/cache-service';
     HomePage,
     ListPage,
     HowMuch,
-    HowLong
+    HowLong,
+    OverviewPage
   ],
   imports: [
     BrowserModule,
@@ -32,7 +34,8 @@ import { CacheService } from '../services/cache-service';
     HomePage,
     ListPage,
     HowMuch,
-    HowLong
+    HowLong,
+    OverviewPage
   ],
   providers: [
     StatusBar,

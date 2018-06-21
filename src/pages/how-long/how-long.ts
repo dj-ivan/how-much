@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CacheService } from '../../services/cache-service';
+import { OverviewPage } from '../overview/overview';
 
 @Component({
   selector: 'page-home',
@@ -35,6 +36,6 @@ export class HowLong {
 
   public submitForm() {
     this.cache.budgetLength = this.userForm.value;
-    //this.navCtrl.push(Step2);
+    this.navCtrl.push(OverviewPage);
   }
 }
