@@ -1,0 +1,19 @@
+<ion-content class="get-started-container" padding>
+    <div class="title">
+      Step 1:
+    </div>
+    <div class="title">
+      How much are you allowing yourself to spend?
+    </div>  
+    <form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
+      <div *ngIf="textBoxVisible" style="text-align: center">
+        <ion-item style="margin-top:170px; max-width:85%; display:inline-block;">
+          <ion-input type="number" formControlName="budgetAmount" required [placeholder]="'When do you set your next budget?'"></ion-input>
+        </ion-item>
+        <button type="submit" ion-button icon-only large class="arrow-button">
+            <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+      </div>
+    </form>
+</ion-content>
+
