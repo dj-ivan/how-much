@@ -3,15 +3,14 @@ import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CacheService } from '../../services/cache-service';
-import { HowLong } from '../how-long/how-long';
 
 @Component({
   selector: 'page-home',
   animations: [fadeInAnimation],
-  templateUrl: 'how-much.html',
+  templateUrl: 'how-long.html',
   host: { '[@fadeInAnimation]': '' }
 })
-export class HowMuch {
+export class HowLong {
   public userForm: FormGroup;
   public textBoxVisible: boolean;
 
@@ -36,6 +35,6 @@ export class HowMuch {
 
   public submitForm() {
     this.cache.budgetAmount = this.userForm.value;
-    this.navCtrl.push(HowLong);
+    //this.navCtrl.push(Step2);
   }
 }
