@@ -25,7 +25,8 @@ export class HowLong {
       // userName: [''],
       // email: [''],
       // password: [''],
-      budgetAmount: ['', Validators.required]
+      budgetLength: ['', Validators.required],
+      budgetLengthIndication: ['', Validators.required]
     });
   }
 
@@ -34,7 +35,7 @@ export class HowLong {
   }
 
   public submitForm() {
-    this.cache.budgetAmount = this.userForm.value;
+    this.cache.budgetLength = this.userForm.value;
     //this.navCtrl.push(Step2);
   }
 }
