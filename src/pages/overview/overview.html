@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Overview</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="budget">
+    <ion-card-header class="card-header">
+      LEFT TO SPEND
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <div class="amount-remaining">{{remainingAmount | currency}} </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <div id="income" class="status-badge">
+          <div class="badge-header">$2300</div>
+          <div class="badge-body">INCOME</div>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div id="budget" class="status-badge">
+          <div class="badge-header">$600</div>
+          <div class="badge-body">BUDGET</div>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+        <div id="spent" class="status-badge">
+          <div class="badge-header">-$340</div>
+          <div class="badge-body">SPENT</div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="expenses-container">
+    <div class="expenses-header">Expenses</div>
+    <ion-row>
+      <ion-col col-12>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <div class="expenses">
+          <ion-item-group>
+            <ion-item-divider color="light">Day 2</ion-item-divider>
+            <ion-item>$23 - Burger King</ion-item>
+            <ion-item>$34 - Zipps Bar</ion-item>
+            <ion-item-divider color="light">Day 1</ion-item-divider>
+            <ion-item>$11 - McDonalds</ion-item>
+            <ion-item>$182 - American Airlines</ion-item>
+          </ion-item-group>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

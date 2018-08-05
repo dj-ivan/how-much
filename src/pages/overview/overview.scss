@@ -1,0 +1,65 @@
+page-overview {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    color: #7f7e7e;
+    background-color: #ececec;
+
+    .budget {
+        background-color: #a5d6a7;
+
+        .card-header {
+            color: #388e3c;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .amount-remaining {
+            color: #00600f;
+            font-size: 2.4rem;
+            font-weight: 700;
+        }
+    }
+
+    .expenses-header {
+        font-weight: 700;
+        font-size: 2rem;
+        text-align: left;
+    }
+
+    #income {
+        background-color: #338a3e;
+    }
+
+    #budget {
+        background-color: #66bb6a;
+    }
+
+    #spent {
+        background-color: #FF7069;
+    }
+
+    .status-badge {
+        padding: 5px;
+        border-radius: 2px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+        .badge-header {
+            margin: 10px;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .badge-body {
+            margin: 10px;
+            opacity: 0.4;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    }
+
+    .expenses-container {
+      padding-top: 3rem;
+    }
+}
