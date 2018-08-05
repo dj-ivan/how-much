@@ -21,11 +21,6 @@ export class HowMuch {
       this.showTextBox();
     }, 2500);
     this.userForm = this.formBuilder.group({
-      // firstName: ['', Validators.required],
-      // lastName: [''],
-      // userName: [''],
-      // email: [''],
-      // password: [''],
       budgetAmount: ['', Validators.required]
     });
   }
@@ -35,7 +30,7 @@ export class HowMuch {
   }
 
   public submitForm() {
-    this.cache.budgetAmount = this.userForm.value;
+    // this.cache.budgetAmount = this.userForm.value;
     this.navCtrl.push(HowLong);
   }
 }
