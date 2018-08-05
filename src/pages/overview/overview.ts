@@ -15,8 +15,8 @@ export class OverviewPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private cache: CacheService) {
-    this.budgetLength = this.cache.budgetLength;
-    this.startingBudget, this.remainingAmount = this.cache.budgetAmount;
+    this.budgetLength = this.cache.budget.BudgetDuration;
+    this.remainingAmount = this.cache.budget.RemainingBudget;
   }
 
   ionViewDidLoad() {

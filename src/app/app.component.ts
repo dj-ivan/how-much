@@ -1,3 +1,4 @@
+import { OverviewPage } from './../pages/overview/overview';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,7 +15,7 @@ import { HowLong } from '../pages/how-long/how-long';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = OverviewPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -26,7 +27,8 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'How Much', component: HowMuch},
-      { title: 'How Long', component: HowLong}
+      { title: 'How Long', component: HowLong},
+      { title: 'Overview', component: OverviewPage}
     ];
 
   }

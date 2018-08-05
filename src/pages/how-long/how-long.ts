@@ -35,7 +35,7 @@ export class HowLong {
   }
 
   public submitForm() {
-    this.cache.budgetLength = this.userForm.value;
+    this.cache.budget.StartingBudget = this.userForm.value;
     this.navCtrl.push(OverviewPage);
   }
 }
