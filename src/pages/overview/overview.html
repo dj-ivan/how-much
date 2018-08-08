@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Overview</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addExpense()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,19 +24,19 @@
     <ion-row>
       <ion-col col-4>
         <div id="income" class="status-badge">
-          <div class="badge-header">$2300</div>
+          <div class="badge-header">{{income | currency}}</div>
           <div class="badge-body">INCOME</div>
         </div>
       </ion-col>
       <ion-col col-4>
         <div id="budget" class="status-badge">
-          <div class="badge-header">$600</div>
+          <div class="badge-header">{{startingBudget | currency}}</div>
           <div class="badge-body">BUDGET</div>
         </div>
       </ion-col>
       <ion-col col-4>
         <div id="spent" class="status-badge">
-          <div class="badge-header">-$340</div>
+          <div class="badge-header">{{totalSpent | currency}}</div>
           <div class="badge-body">SPENT</div>
         </div>
       </ion-col>

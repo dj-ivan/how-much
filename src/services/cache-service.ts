@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 export class CacheService {
 
   public budget: Budget = {
-    Income: 2000,
-    BudgetDuration: 'Weekly',
-    RemainingBudget: 1657.23,
-    StartingBudget: 2000,
-    TotalExpenses: 342.77
+    income: 2000,
+    budgetDuration: 'Weekly',
+    remainingBudget: 1657.23,
+    startingBudget: 2000,
+    totalExpenses: 342.77
   }
 
   // Seeding the db

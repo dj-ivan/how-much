@@ -1,7 +1,7 @@
 export interface Budget {
-  Income: number;
-  StartingBudget: number;
-  BudgetDuration: string;
-  RemainingBudget: number;
-  TotalExpenses: number;
+  income: number;
+  startingBudget: number;
+  budgetDuration: string;
+  remainingBudget: number;
+  totalExpenses: number;
 }
