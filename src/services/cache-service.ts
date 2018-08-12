@@ -13,11 +13,14 @@ export class CacheService {
     totalAmountSpent: 342.77,
     expenses: [
       {
+        id: '23463452',
         name: 'Mcdonalds',
         amount: 65.25,
         date: new Date()
       } as Expense
-    ]
+    ],
+    budgetEndDate: new Date(),
+    budgetStartingDate: new Date()
   }
 
   // Seeding the db

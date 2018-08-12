@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CacheService } from '../services/cache-service';
 import { OverviewPage } from '../pages/overview/overview';
+import { BudgetService } from '../services/budget-service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { OverviewPage } from '../pages/overview/overview';
     StatusBar,
     SplashScreen,
     CacheService,
+    BudgetService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { CacheService } from '../../services/cache-service';
 import { HowLong } from '../how-long/how-long';
 
 @Component({
@@ -15,7 +14,7 @@ export class HowMuch {
   public userForm: FormGroup;
   public textBoxVisible: boolean;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private cache: CacheService) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder) {
     this.textBoxVisible = false;
     setTimeout(() => {
       this.showTextBox();
@@ -30,7 +29,6 @@ export class HowMuch {
   }
 
   public submitForm() {
-    // this.cache.budgetAmount = this.userForm.value;
     this.navCtrl.push(HowLong);
   }
 }
