@@ -4,6 +4,7 @@ import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CacheService } from '../../services/cache-service';
 import { OverviewPage } from '../overview/overview';
+import { BudgetFrequency, CacheItems } from '../../models/budget-model';
 
 @Component({
   selector: 'page-home',
@@ -35,7 +36,24 @@ export class HowLong {
   }
 
   public submitForm() {
-    this.cache.budget.startingBudget = this.userForm.value;
+    switch (this.userForm.value.budgetLength) {
+      case 'w':
+      this.cache.budget.budgetFrequency = BudgetFrequency.WEEKLY;
+      break;
+
+      case 'bi':
+      this.cache.budget.budgetFrequency = BudgetFrequency.BIWEEKLY;
+      break;
+
+      case 'm':
+      this.cache.budget.budgetFrequency = BudgetFrequency.MONTHLY;
+      break;
+
+      default:
+      break;
+    }
+
+    this.cache.storeToCache(CacheItems.BUDGET, this.cache.budget);
     this.navCtrl.push(OverviewPage);
   }
 }

@@ -30,7 +30,14 @@ export class HowMuch {
   }
 
   public submitForm() {
-    // this.cache.budgetAmount = this.userForm.value;
+    this.cache.budget.startingBudget = +this.userForm.value.budgetAmount;
+    this.cache.budget.budgetStartingDate = new Date();
+    this.cache.budget.budgetEndDate = new Date();
+    this.cache.budget.income = 0;
+    this.cache.budget.remainingBudget = +this.userForm.value.budgetAmount;
+    this.cache.budget.totalAmountSpent = 0;
+    this.cache.budget.expenses = [];
+
     this.navCtrl.push(HowLong);
   }
 }
