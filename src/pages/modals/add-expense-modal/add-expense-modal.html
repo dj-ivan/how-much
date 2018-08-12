@@ -9,11 +9,6 @@
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addNewExpense()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -31,4 +26,7 @@
     </ion-item>
 
   </ion-list>
+
+  <button class="add-expense" ion-button (click)="addNewExpense()">Add Expense</button>
+
 </ion-content>

@@ -1,3 +1,4 @@
+import { BudgetFrequency } from './../../models/budget-model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { CacheService } from '../../services/cache-service';
@@ -15,7 +16,7 @@ export class OverviewPage {
   public startingBudget: number = 0;
   public income: number = 0;
   public totalSpent: number = 0;
-  public budgetLength: string = '';
+  public budgetFrequency: BudgetFrequency;
   public expenses: Expense[] = [];
 
   constructor(
@@ -25,14 +26,14 @@ export class OverviewPage {
     public modalCtrl: ModalController,
     private events: Events
   ) {
-    this.budgetLength = this.cache.budget.budgetDuration;
+    this.budgetFrequency = this.cache.budget.budgetFrequency;
     this.remainingAmount = this.cache.budget.remainingBudget;
     this.startingBudget = this.cache.budget.startingBudget;
     this.income = this.cache.budget.income;
-    this.totalSpent = this.cache.budget.totalExpenses;
+    this.totalSpent = this.cache.budget.totalAmountSpent;
     this.expenses = this.cache.budget.expenses;
 
-    events.subscribe('expense:addExpense', (expense, time) => {
+    this.events.subscribe('expense:addExpense', (expense, time) => {
       this.addExpense(expense);
       console.log('Recieved new expense!')
     });

@@ -1,4 +1,4 @@
-import { Budget } from './../models/budget-model';
+import { Budget, BudgetFrequency } from './../models/budget-model';
 import { Injectable } from '@angular/core';
 import { Expense } from '../models/expense-model';
 
@@ -7,10 +7,10 @@ export class CacheService {
 
   public budget: Budget = {
     income: 2000,
-    budgetDuration: 'Weekly',
+    budgetFrequency: BudgetFrequency.BIWEEKLY,
     remainingBudget: 1657.23,
     startingBudget: 2000,
-    totalExpenses: 342.77,
+    totalAmountSpent: 342.77,
     expenses: [
       {
         name: 'Mcdonalds',
@@ -30,5 +30,5 @@ export class CacheService {
   public storeToCache = (dataToCache) => {
     //store to local cache
   }
-  
+
 }
