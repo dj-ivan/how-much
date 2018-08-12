@@ -1,6 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Overview</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showAddExpenseModal()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,19 +24,19 @@
     <ion-row>
       <ion-col col-4>
         <div id="income" class="status-badge">
-          <div class="badge-header">$2300</div>
+          <div class="badge-header">{{income | currency}}</div>
           <div class="badge-body">INCOME</div>
         </div>
       </ion-col>
       <ion-col col-4>
         <div id="budget" class="status-badge">
-          <div class="badge-header">$600</div>
+          <div class="badge-header">{{startingBudget | currency}}</div>
           <div class="badge-body">BUDGET</div>
         </div>
       </ion-col>
       <ion-col col-4>
         <div id="spent" class="status-badge">
-          <div class="badge-header">-$340</div>
+          <div class="badge-header">{{totalSpent | currency}}</div>
           <div class="badge-body">SPENT</div>
         </div>
       </ion-col>
@@ -47,12 +52,10 @@
       <ion-col col-12>
         <div class="expenses">
           <ion-item-group>
-            <ion-item-divider color="light">Day 2</ion-item-divider>
-            <ion-item>$23 - Burger King</ion-item>
-            <ion-item>$34 - Zipps Bar</ion-item>
-            <ion-item-divider color="light">Day 1</ion-item-divider>
-            <ion-item>$11 - McDonalds</ion-item>
-            <ion-item>$182 - American Airlines</ion-item>
+            <div *ngFor="let expense of expenses">
+              <ion-item-divider color="light">{{expense.date}}</ion-item-divider>
+              <ion-item>{{expense.name}} - {{expense.amount | currency}}</ion-item>
+            </div>
           </ion-item-group>
         </div>
       </ion-col>
