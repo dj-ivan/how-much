@@ -22,4 +22,13 @@ export class CacheService {
 
   // Seeding the db
   constructor() { }
+
+  public getFromCache = (dataToGet) => {
+    //get from local cache
+  }
+
+  public storeToCache = (dataToCache) => {
+    //store to local cache
+  }
+  
 }
