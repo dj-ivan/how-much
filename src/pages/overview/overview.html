@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Overview</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="showAddExpenseModal()">
+      <button ion-button icon-only (click)="showExpenseModal()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -54,7 +54,10 @@
           <ion-item-group>
             <div *ngFor="let expense of expenses; let idx = index">
               <ion-item-divider color="light" *ngIf="idx == 0">{{expense.date | date:'EEEE, MMMM d'}}</ion-item-divider>
-              <ion-item>{{expense.name}} - {{expense.amount | currency}}</ion-item>
+              <ion-item>
+                  <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>
+                  <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>
+              </ion-item>
             </div>
           </ion-item-group>
         </div>

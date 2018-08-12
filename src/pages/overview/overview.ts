@@ -36,12 +36,9 @@ export class OverviewPage {
     this.totalSpent = this.cache.budget.totalAmountSpent;
     this.expenses = this.cache.budget.expenses;
 
-    // this.cache.storeToCache(CacheItems.BUDGET, this.cache.budget);
-    //this.cache.getFromCache(CacheItems.BUDGET).then(e => {this.budget = e.object; console.log(e.object)});
-
-    this.events.subscribe('expense:addExpense', (expense, time) => {
-      this.addExpense(expense);
-      console.log('Recieved new expense!')
+    this.events.subscribe('expense:addExpense', (expenses: Expense[]) => {
+      this.expenses = expenses
+      console.log('Recieved new expenses!')
     });
   }
 
@@ -49,14 +46,9 @@ export class OverviewPage {
     console.log('ionViewDidLoad OverviewPage');
   }
 
-  public showAddExpenseModal() {
-    const modal = this.modalCtrl.create(AddExpenseModal);
+  public showExpenseModal(expense: Expense) {
+    const modal = expense ? this.modalCtrl.create(AddExpenseModal,{ expense }) : this.modalCtrl.create(AddExpenseModal);
     modal.present();
   }
 
-  public addExpense(expense: Expense) {
-    console.log('Adding new expense', expense)
-    this.cache.budget.expenses.push(expense);
-    this.expenses = this.cache.budget.expenses;
-  }
 }

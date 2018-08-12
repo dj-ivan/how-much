@@ -3,16 +3,16 @@ import { Injectable } from '@angular/core';
 import { Expense } from '../models/expense-model';
 import { StoreService } from './store-service';
 import { Events } from 'ionic-angular';
+import { BudgetFrequency } from '../models/budget-model';
 
 @Injectable()
 export class CacheService {
-  
+
   constructor(private storeService: StoreService, private events: Events) {
       this.getBudgetFromCache();
    }
   public budget: Budget;
   public expensesCache: Expense[];
-
 
   public getBudgetFromCache = () => {
       if (!this.budget) {
@@ -27,7 +27,7 @@ export class CacheService {
         });
       } else {
         return this.budget;
-      }    
+      }
   }
 
   public storeToCache = (dataTypeToCache: CacheItems, dataToCache: any) => {
@@ -36,11 +36,11 @@ export class CacheService {
       case CacheItems.ACCOUNT:
         this.storeService.setObject('account', dataToCache);
       break;
-  
+
       case CacheItems.BUDGET:
         this.storeService.setObject('budget', dataToCache);
       break;
-  
+
       case CacheItems.EXPENSES:
         this.storeService.setObject('expenses', dataToCache);
       break;

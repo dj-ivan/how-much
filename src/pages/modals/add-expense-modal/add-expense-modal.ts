@@ -1,29 +1,42 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
-import { Events } from 'ionic-angular';
+import { ViewController, NavParams } from 'ionic-angular';
 import { Expense } from '../../../models/expense-model';
+import { BudgetService } from '../../../services/budget-service';
 @Component({
   selector: 'add-expense',
   templateUrl: 'add-expense-modal.html'
 })
 export class AddExpenseModal {
   public name = '';
-  public amount:number;
+  public amount: number;
+  public id = '';
 
-  constructor(private viewCtrl: ViewController, private events: Events) {}
+  constructor(
+    private viewCtrl: ViewController,
+    private budgetService: BudgetService,
+    private params: NavParams
+  ) {
+    let editExpense = this.params.get('expense');
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OverviewPage');
+    this.name = editExpense && editExpense.name ? editExpense.name : '';
+    this.amount = editExpense && editExpense.amount ? editExpense.amount : '';
+    this.id = editExpense && editExpense.id ? editExpense.id : '';
   }
 
-  public addNewExpense() {
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad Expense Modal');
+  }
+
+  public addExpense() {
     let expense = {
+      id: this.id ? this.id : '',
       amount: this.amount,
       date: new Date(),
       name: this.name
     } as Expense;
-    console.log('Expense sent to Overview Component!');
-    this.events.publish('expense:addExpense', expense, Date.now());
+
+    this.budgetService.addExpense(expense);
+    console.log('Expense sent to Budget Service!');
     this.viewCtrl.dismiss();
   }
 

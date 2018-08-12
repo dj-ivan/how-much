@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { CacheService } from '../../services/cache-service';
 import { HowLong } from '../how-long/how-long';
+import { CacheService } from '../../services/cache-service';
 
 @Component({
   selector: 'page-home',
