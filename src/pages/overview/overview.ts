@@ -1,4 +1,4 @@
-import { BudgetFrequency } from './../../models/budget-model';
+import { BudgetFrequency, CacheItems, Budget } from './../../models/budget-model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { CacheService } from '../../services/cache-service';
@@ -18,6 +18,7 @@ export class OverviewPage {
   public totalSpent: number = 0;
   public budgetFrequency: BudgetFrequency;
   public expenses: Expense[] = [];
+  public budget: Budget;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +27,8 @@ export class OverviewPage {
     public modalCtrl: ModalController,
     private events: Events
   ) {
+    this.budget = this.cache.budget;
+    this.budget = this.cache.getBudgetFromCache();
     this.budgetFrequency = this.cache.budget.budgetFrequency;
     this.remainingAmount = this.cache.budget.remainingBudget;
     this.startingBudget = this.cache.budget.startingBudget;

@@ -54,8 +54,9 @@
           <ion-item-group>
             <div *ngFor="let expense of expenses; let idx = index">
               <ion-item-divider color="light" *ngIf="idx == 0">{{expense.date | date:'EEEE, MMMM d'}}</ion-item-divider>
-              <ion-item>{{expense.name}} - {{expense.amount | currency}}
-                  <span ion-text (click)="showExpenseModal(expense)">Edit</span>
+              <ion-item>
+                  <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>
+                  <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>
               </ion-item>
             </div>
           </ion-item-group>

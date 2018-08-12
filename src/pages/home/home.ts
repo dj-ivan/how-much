@@ -1,6 +1,11 @@
+import { BudgetService } from '../../services/budget-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HowMuch } from '../how-much/how-much';
+import { CacheService } from '../../services/cache-service';
+import { Events } from 'ionic-angular';
+import { OverviewPage } from '../overview/overview';
+
 
 @Component({
   selector: 'page-home',
@@ -8,13 +13,29 @@ import { HowMuch } from '../how-much/how-much';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  public loading = true;
+
+  constructor(public navCtrl: NavController, public cache: CacheService, public events: Events, public budgetService: BudgetService) {
+    this.events.subscribe('budget:BudgetLoaded', (budget) => {
+      if (!budget || budget == null) {
+        this.loading = false;
+        this.budgetService.startNewBudget();
+      }
+      else {
+        this.navigateToOverview();
+      }
+    });
 
   }
 
   public navigateToSetup() {
     // navigate to the new page if it is not the current page
     this.navCtrl.push(HowMuch);
+  }
+
+  public navigateToOverview() {
+    // navigate to the new page if it is not the current page
+    this.navCtrl.push(OverviewPage);
   }
 
 }

@@ -17,11 +17,10 @@ export class AddExpenseModal {
     private params: NavParams
   ) {
     let editExpense = this.params.get('expense');
-    if (editExpense.id !== '') {
-      this.name = editExpense.name;
-      this.amount = editExpense.amount;
-      this.id = editExpense.id;
-    }
+
+    this.name = editExpense && editExpense.name ? editExpense.name : '';
+    this.amount = editExpense && editExpense.amount ? editExpense.amount : '';
+    this.id = editExpense && editExpense.id ? editExpense.id : '';
   }
 
   ionViewDidLoad() {

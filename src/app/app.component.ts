@@ -15,7 +15,7 @@ import { HowLong } from '../pages/how-long/how-long';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = OverviewPage;
+  rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
