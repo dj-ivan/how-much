@@ -52,8 +52,8 @@
       <ion-col col-12>
         <div class="expenses">
           <ion-item-group>
-            <div *ngFor="let expense of expenses">
-              <ion-item-divider color="light">{{expense.date}}</ion-item-divider>
+            <div *ngFor="let expense of expenses; let idx = index">
+              <ion-item-divider color="light" *ngIf="idx == 0">{{expense.date | date:'EEEE, MMMM d'}}</ion-item-divider>
               <ion-item>{{expense.name}} - {{expense.amount | currency}}</ion-item>
             </div>
           </ion-item-group>

@@ -1,9 +1,18 @@
 import { Expense } from './expense-model';
+
 export interface Budget {
   income: number;
   startingBudget: number;
-  budgetDuration: string;
+  budgetFrequency: BudgetFrequency;
   remainingBudget: number;
-  totalExpenses: number;
+  totalAmountSpent: number;
   expenses: Expense[];
+  budgetStartingDate: Date;
+  budgetEndDate: Date;
+}
+
+export enum BudgetFrequency {
+  WEEKLY,
+  BIWEEKLY,
+  MONTHLY
 }
