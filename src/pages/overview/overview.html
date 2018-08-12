@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>Overview</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addExpense()">
+      <button ion-button icon-only (click)="showAddExpenseModal()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -52,12 +52,10 @@
       <ion-col col-12>
         <div class="expenses">
           <ion-item-group>
-            <ion-item-divider color="light">Day 2</ion-item-divider>
-            <ion-item>$23 - Burger King</ion-item>
-            <ion-item>$34 - Zipps Bar</ion-item>
-            <ion-item-divider color="light">Day 1</ion-item-divider>
-            <ion-item>$11 - McDonalds</ion-item>
-            <ion-item>$182 - American Airlines</ion-item>
+            <div *ngFor="let expense of expenses">
+              <ion-item-divider color="light">{{expense.date}}</ion-item-divider>
+              <ion-item>{{expense.name}} - {{expense.amount | currency}}</ion-item>
+            </div>
           </ion-item-group>
         </div>
       </ion-col>

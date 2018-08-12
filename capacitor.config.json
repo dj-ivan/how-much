@@ -1,0 +1,6 @@
+{
+  "appId": "com.offtrack.app",
+  "appName": "how-much",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
