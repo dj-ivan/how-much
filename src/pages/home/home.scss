@@ -42,4 +42,20 @@
     color: #ffffff;
     text-align: center;
   }
+
+  .spinner {
+    display: flex;
+    margin:auto;
+    padding-top: 9rem;
+    fill: #ffffff;
+    width: 28px;
+    height: 28px;
+  }
+
+  ion-spinner * {
+    width: 28px;
+    height: 28px;
+    stroke: #ffffff;
+    fill: #ffffff;
+  }
 }

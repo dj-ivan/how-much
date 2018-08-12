@@ -21,7 +21,9 @@
   <div class="title">
     It's time to <br> <span class="budget">Budget</span> <br> to start <span class="easy">$aving</span> money.
   </div>
-  <div class="cta-button" (click)="navigateToSetup()">
+
+  <ion-spinner class="spinner" name="circles" *ngIf="loading"></ion-spinner>
+  <div *ngIf="!loading" class="cta-button" (click)="navigateToSetup()">
     Get Started
   </div>
 </ion-content>

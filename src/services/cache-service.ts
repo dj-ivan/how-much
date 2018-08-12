@@ -1,34 +1,50 @@
-import { Budget, BudgetFrequency } from './../models/budget-model';
+import { Budget, CacheItems } from './../models/budget-model';
 import { Injectable } from '@angular/core';
 import { Expense } from '../models/expense-model';
+import { StoreService } from './store-service';
+import { Events } from 'ionic-angular';
 
 @Injectable()
 export class CacheService {
+  
+  constructor(private storeService: StoreService, private events: Events) {
+      this.getBudgetFromCache();
+   }
+  public budget: Budget;
+  public expensesCache: Expense[];
 
-  public budget: Budget = {
-    income: 2000,
-    budgetFrequency: BudgetFrequency.BIWEEKLY,
-    remainingBudget: 1657.23,
-    startingBudget: 2000,
-    totalAmountSpent: 342.77,
-    expenses: [
-      {
-        name: 'Mcdonalds',
-        amount: 65.25,
-        date: new Date()
-      } as Expense
-    ]
+
+  public getBudgetFromCache = () => {
+      if (!this.budget) {
+        this.storeService.getObject('budget').then(e => {
+          if(!e) {
+            this.budget = null;
+          } else {
+            this.budget = e.object;
+          }
+          this.events.publish('budget:BudgetLoaded', this.budget);
+          return this.budget;
+        });
+      } else {
+        return this.budget;
+      }    
   }
 
-  // Seeding the db
-  constructor() { }
+  public storeToCache = (dataTypeToCache: CacheItems, dataToCache: any) => {
+    switch (dataTypeToCache) {
 
-  public getFromCache = (dataToGet) => {
-    //get from local cache
-  }
-
-  public storeToCache = (dataToCache) => {
-    //store to local cache
+      case CacheItems.ACCOUNT:
+        this.storeService.setObject('account', dataToCache);
+      break;
+  
+      case CacheItems.BUDGET:
+        this.storeService.setObject('budget', dataToCache);
+      break;
+  
+      case CacheItems.EXPENSES:
+        this.storeService.setObject('expenses', dataToCache);
+      break;
+      }
   }
 
 }

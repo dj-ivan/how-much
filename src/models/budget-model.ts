@@ -16,3 +16,9 @@ export enum BudgetFrequency {
   BIWEEKLY,
   MONTHLY
 }
+
+export enum CacheItems {
+  BUDGET,
+  EXPENSES,
+  ACCOUNT
+}
