@@ -1,9 +1,7 @@
 import { Budget, CacheItems } from './../models/budget-model';
 import { Injectable } from '@angular/core';
-import { Expense } from '../models/expense-model';
 import { StoreService } from './store-service';
 import { Events } from 'ionic-angular';
-import { BudgetFrequency } from '../models/budget-model';
 
 @Injectable()
 export class CacheService {
@@ -12,9 +10,8 @@ export class CacheService {
       this.getBudgetFromCache();
    }
   public budget: Budget;
-  public expensesCache: Expense[];
 
-  public getBudgetFromCache = () => {
+  public getBudgetFromCache() {
       if (!this.budget) {
         this.storeService.getObject('budget').then(e => {
           if(!e) {
@@ -22,7 +19,7 @@ export class CacheService {
           } else {
             this.budget = e.object;
           }
-          this.events.publish('budget:BudgetLoaded', this.budget);
+          this.events.publish('cache:BudgetCacheLoaded', this.budget);
           return this.budget;
         });
       } else {
@@ -30,7 +27,7 @@ export class CacheService {
       }
   }
 
-  public storeToCache = (dataTypeToCache: CacheItems, dataToCache: any) => {
+  public storeToCache(dataTypeToCache: CacheItems, dataToCache: any) {
     switch (dataTypeToCache) {
 
       case CacheItems.ACCOUNT:
@@ -45,6 +42,11 @@ export class CacheService {
         this.storeService.setObject('expenses', dataToCache);
       break;
       }
+  }
+
+  public nukeData() {
+    this.budget = null;
+    this.storeService.clear();
   }
 
 }

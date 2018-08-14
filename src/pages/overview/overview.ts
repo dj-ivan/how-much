@@ -1,10 +1,11 @@
-import { BudgetFrequency, CacheItems, Budget } from './../../models/budget-model';
+import { BudgetService } from './../../services/budget-service';
+import { BudgetFrequency, Budget } from './../../models/budget-model';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { CacheService } from '../../services/cache-service';
 import { Expense } from '../../models/expense-model';
 import { ModalController } from 'ionic-angular';
 import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
+import { compareDesc } from 'date-fns';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,7 @@ import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
 export class OverviewPage {
   public remainingAmount: number = 0;
   public startingBudget: number = 0;
-  public income: number = 0;
+  public daysLeft: number = 0;
   public totalSpent: number = 0;
   public budgetFrequency: BudgetFrequency;
   public expenses: Expense[] = [];
@@ -23,22 +24,15 @@ export class OverviewPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private cache: CacheService,
+    private _budgetService: BudgetService,
     public modalCtrl: ModalController,
     private events: Events
   ) {
-    this.budget = this.cache.budget;
-    this.budget = this.cache.getBudgetFromCache();
-    this.budgetFrequency = this.cache.budget.budgetFrequency;
-    this.remainingAmount = this.cache.budget.remainingBudget;
-    this.startingBudget = this.cache.budget.startingBudget;
-    this.income = this.cache.budget.income;
-    this.totalSpent = this.cache.budget.totalAmountSpent;
-    this.expenses = this.cache.budget.expenses;
+    this.buildBudgetDashboard();
 
-    this.events.subscribe('expense:addExpense', (expenses: Expense[]) => {
-      this.expenses = expenses
-      console.log('Recieved new expenses!')
+    this.events.subscribe('budget:updatedBudget', (budget: Budget) => {
+      this.buildBudgetDashboard(budget);
+      console.log('Recieved new expenses!');
     });
   }
 
@@ -46,9 +40,30 @@ export class OverviewPage {
     console.log('ionViewDidLoad OverviewPage');
   }
 
+  public buildBudgetDashboard(budget?: Budget) {
+    this.budget =
+      budget !== undefined ? budget : this._budgetService.getBudget();
+
+    this.budgetFrequency = this.budget.budgetFrequency;
+    this.remainingAmount = this.budget.remainingBudget;
+    this.startingBudget = this.budget.startingBudget;
+    this.daysLeft = this.budget.remainingDays;
+    this.totalSpent = this.budget.totalAmountSpent;
+    this.sortExpensesDesc();
+  }
+
   public showExpenseModal(expense: Expense) {
-    const modal = expense ? this.modalCtrl.create(AddExpenseModal,{ expense }) : this.modalCtrl.create(AddExpenseModal);
+    const modal = expense
+      ? this.modalCtrl.create(AddExpenseModal, { expense })
+      : this.modalCtrl.create(AddExpenseModal);
     modal.present();
   }
 
+  public sortExpensesDesc() {
+    let sortedExpenses = this.budget.expenses.sort((x, y) => {
+      return compareDesc(x.date, y.date);
+    });
+
+    this.expenses = sortedExpenses;
+  }
 }

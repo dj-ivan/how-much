@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { CacheService } from '../../services/cache-service';
 import { OverviewPage } from '../overview/overview';
-import { BudgetFrequency, CacheItems } from '../../models/budget-model';
+import { BudgetFrequency } from '../../models/budget-model';
+import { BudgetService } from '../../services/budget-service';
 
 @Component({
   selector: 'page-home',
@@ -16,11 +16,11 @@ export class HowLong {
   public userForm: FormGroup;
   public textBoxVisible: boolean;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private cache: CacheService) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private budgetService: BudgetService) {
     this.textBoxVisible = false;
     setTimeout(() => {
       this.showTextBox();
-    }, 2500);
+    }, 2000);
     this.userForm = this.formBuilder.group({
       // firstName: ['', Validators.required],
       // lastName: [''],
@@ -38,22 +38,20 @@ export class HowLong {
   public submitForm() {
     switch (this.userForm.value.budgetLength) {
       case 'w':
-      this.cache.budget.budgetFrequency = BudgetFrequency.WEEKLY;
+      this.budgetService.setBudgetFrequency(BudgetFrequency.WEEKLY);
       break;
 
       case 'bi':
-      this.cache.budget.budgetFrequency = BudgetFrequency.BIWEEKLY;
+      this.budgetService.setBudgetFrequency(BudgetFrequency.BIWEEKLY);
       break;
 
       case 'm':
-      this.cache.budget.budgetFrequency = BudgetFrequency.MONTHLY;
+      this.budgetService.setBudgetFrequency(BudgetFrequency.MONTHLY);
       break;
 
       default:
       break;
     }
-
-    this.cache.storeToCache(CacheItems.BUDGET, this.cache.budget);
-    this.navCtrl.push(OverviewPage);
+    this.navCtrl.setRoot(OverviewPage);
   }
 }

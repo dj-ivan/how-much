@@ -8,7 +8,7 @@ import { BudgetService } from '../../../services/budget-service';
 })
 export class AddExpenseModal {
   public name = '';
-  public amount: number;
+  public amount = '';
   public id = '';
 
   constructor(
@@ -30,14 +30,20 @@ export class AddExpenseModal {
   public addExpense() {
     let expense = {
       id: this.id ? this.id : '',
-      amount: this.amount,
+      amount: +this.amount,
       date: new Date(),
       name: this.name
     } as Expense;
 
     this.budgetService.addExpense(expense);
     console.log('Expense sent to Budget Service!');
-    this.viewCtrl.dismiss();
+    this.dismiss();
+  }
+
+  public removeExpense() {
+    this.budgetService.removeExpense(this.id);
+    console.log('Remove Expense sent to Budget Service!', this.id);
+    this.dismiss();
   }
 
   public dismiss() {
