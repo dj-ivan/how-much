@@ -9,12 +9,13 @@ export interface Budget {
   expenses: Expense[];
   budgetStartingDate: Date;
   budgetEndDate: Date;
+  remainingDays: number;
 }
 
 export enum BudgetFrequency {
-  WEEKLY,
-  BIWEEKLY,
-  MONTHLY
+  WEEKLY = 7,
+  BIWEEKLY = 14,
+  MONTHLY = 31
 }
 
 export enum CacheItems {

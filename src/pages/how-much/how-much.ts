@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { HowLong } from '../how-long/how-long';
-import { CacheService } from '../../services/cache-service';
+import { BudgetService } from '../../services/budget-service';
 
 @Component({
   selector: 'page-home',
@@ -15,11 +15,11 @@ export class HowMuch {
   public userForm: FormGroup;
   public textBoxVisible: boolean;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private cache: CacheService) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private budget: BudgetService) {
     this.textBoxVisible = false;
     setTimeout(() => {
       this.showTextBox();
-    }, 2500);
+    }, 2000);
     this.userForm = this.formBuilder.group({
       budgetAmount: ['', Validators.required]
     });
@@ -30,14 +30,7 @@ export class HowMuch {
   }
 
   public submitForm() {
-    this.cache.budget.startingBudget = +this.userForm.value.budgetAmount;
-    this.cache.budget.budgetStartingDate = new Date();
-    this.cache.budget.budgetEndDate = new Date();
-    this.cache.budget.income = 0;
-    this.cache.budget.remainingBudget = +this.userForm.value.budgetAmount;
-    this.cache.budget.totalAmountSpent = 0;
-    this.cache.budget.expenses = [];
-
+    this.budget.setNewStartingBudget(+this.userForm.value.budgetAmount);
     this.navCtrl.push(HowLong);
   }
 }
