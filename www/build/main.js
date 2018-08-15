@@ -766,7 +766,7 @@ var BudgetService = /** @class */ (function () {
         console.log('budgetService: Updating Budget');
         var budget = this.cache.budget;
         var totalAmountSpent = this._calculateTotalSpent(budget);
-        var daysLeft = this._calculateDaysLeft(budget);
+        var daysLeft = this._calculateDaysLeft(budget.budgetEndDate);
         budget.remainingDays = daysLeft;
         budget.totalAmountSpent = totalAmountSpent;
         budget.remainingBudget = budget.startingBudget - totalAmountSpent;
@@ -778,8 +778,10 @@ var BudgetService = /** @class */ (function () {
         var endDate = Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["addDays"])(budget.budgetStartingDate, budget.budgetFrequency);
         return endDate;
     };
-    BudgetService.prototype._calculateDaysLeft = function (budget) {
-        return Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["differenceInCalendarDays"])(budget.budgetEndDate, budget.budgetStartingDate);
+    BudgetService.prototype._calculateDaysLeft = function (budgetEndDate) {
+        var endDate = Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["format"])(budgetEndDate, 'MM/DD/YYYY');
+        var currentDate = Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["format"])(new Date(), 'MM/DD/YYYY');
+        return Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["differenceInCalendarDays"])(endDate, currentDate);
     };
     BudgetService.prototype._calculateTotalSpent = function (budget) {
         return budget.expenses.reduce(function (prev, cur) {
@@ -1045,10 +1047,13 @@ var OverviewPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
             selector: 'page-overview',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Overview</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showExpenseModal()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card class="budget" [ngClass]="budgetStatus">\n    <ion-card-header class="card-header">\n      LEFT TO SPEND\n    </ion-card-header>\n    <ion-card-content>\n      <div>\n        <div class="amount-remaining">{{remainingAmount | currency}} </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-4>\n        <div id="income" class="status-badge" >\n          <div class="badge-header">{{daysLeft}}</div>\n          <div class="badge-body">DAYS LEFT</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="budget" class="status-badge">\n          <div class="badge-header">{{startingBudget | currency}}</div>\n          <div class="badge-body">BUDGET</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="spent" class="status-badge">\n          <div class="badge-header">{{totalSpent | currency}}</div>\n          <div class="badge-body">SPENT</div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid class="expenses-container">\n    <div class="expenses-header">Expenses</div>\n    <ion-row>\n      <ion-col col-12>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="expenses.length > 0">\n      <ion-col col-12>\n        <div class="expenses">\n          <ion-item-group>\n            <div *ngFor="let expense of expenses; let idx = index">\n              <ion-item-divider color="light" *ngIf="idx === 0 || (expense.date.getDate !== expenses[idx - 1].date.getDate)">{{expense.date | date:\'EEEE, MMMM d\'}}</ion-item-divider>\n              <ion-item>\n                <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>\n                <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>\n              </ion-item>\n            </div>\n          </ion-item-group>\n        </div>\n      </ion-col>\n    </ion-row>\n    <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* ModalController */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]])
     ], OverviewPage);
     return OverviewPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 var BudgetStatus;
