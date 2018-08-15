@@ -6,8 +6,6 @@ page-overview {
     background-color: #ececec;
 
     .budget {
-        background-color: #a5d6a7;
-
         .card-header {
             color: #388e3c;
             font-size: 1.5rem;
@@ -18,6 +16,26 @@ page-overview {
             color: #00600f;
             font-size: 2.4rem;
             font-weight: 700;
+        }
+    }
+
+    .good-status {
+        background-color: #a5d6a7;
+    }
+
+    .caution-status {
+        background-color: #FFB300;
+
+        .amount-remaining, .card-header {
+            color: #ececec;
+        }
+    }
+
+    .danger-status {
+        background-color: #c73e3e;
+
+        .amount-remaining, .card-header {
+            color: #ececec;
         }
     }
 

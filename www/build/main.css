@@ -25854,10 +25854,6 @@ page-overview {
   background-color: #ececec;
 }
 
-page-overview .budget {
-  background-color: #a5d6a7;
-}
-
 page-overview .budget .card-header {
   color: #388e3c;
   font-size: 1.5rem;
@@ -25868,6 +25864,26 @@ page-overview .budget .amount-remaining {
   color: #00600f;
   font-size: 2.4rem;
   font-weight: 700;
+}
+
+page-overview .good-status {
+  background-color: #a5d6a7;
+}
+
+page-overview .caution-status {
+  background-color: #FFB300;
+}
+
+page-overview .caution-status .amount-remaining, page-overview .caution-status .card-header {
+  color: #ececec;
+}
+
+page-overview .danger-status {
+  background-color: #c73e3e;
+}
+
+page-overview .danger-status .amount-remaining, page-overview .danger-status .card-header {
+  color: #ececec;
 }
 
 page-overview .expenses-header {

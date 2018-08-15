@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card class="budget">
+  <ion-card class="budget" [ngClass]="budgetStatus">
     <ion-card-header class="card-header">
       LEFT TO SPEND
     </ion-card-header>
@@ -26,7 +26,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <div id="income" class="status-badge">
+        <div id="income" class="status-badge" >
           <div class="badge-header">{{daysLeft}}</div>
           <div class="badge-body">DAYS LEFT</div>
         </div>
@@ -56,7 +56,7 @@
         <div class="expenses">
           <ion-item-group>
             <div *ngFor="let expense of expenses; let idx = index">
-              <ion-item-divider color="light" *ngIf="idx === 0 || (expense.date.getDate() !== expenses[idx - 1].date.getDate())">{{expense.date | date:'EEEE, MMMM d'}}</ion-item-divider>
+              <ion-item-divider color="light" *ngIf="idx === 0 || (expense.date.getDate !== expenses[idx - 1].date.getDate)">{{expense.date | date:'EEEE, MMMM d'}}</ion-item-divider>
               <ion-item>
                 <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>
                 <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>

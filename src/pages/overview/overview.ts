@@ -20,6 +20,7 @@ export class OverviewPage {
   public budgetFrequency: BudgetFrequency;
   public expenses: Expense[] = [];
   public budget: Budget;
+  public budgetStatus = BudgetStatus.GOOD;
 
   constructor(
     public navCtrl: NavController,
@@ -50,6 +51,7 @@ export class OverviewPage {
     this.daysLeft = this.budget.remainingDays;
     this.totalSpent = this.budget.totalAmountSpent;
     this.sortExpensesDesc();
+    this.updateBudgetStatus();
   }
 
   public showExpenseModal(expense: Expense) {
@@ -66,4 +68,26 @@ export class OverviewPage {
 
     this.expenses = sortedExpenses;
   }
+
+  public updateBudgetStatus() {
+    let cautionRange = this.startingBudget * 0.35;
+    let dangerRange = this.startingBudget * 0.15;
+    if (this.remainingAmount > cautionRange) {
+      this.budgetStatus = BudgetStatus.GOOD;
+    } else if (
+      this.remainingAmount > dangerRange &&
+      this.remainingAmount <= cautionRange
+    ) {
+      this.budgetStatus = BudgetStatus.CAUTION;
+    } else {
+      this.budgetStatus = BudgetStatus.DANGER;
+    }
+    console.log('OverviewComponent: Updated budget status', this.budgetStatus, cautionRange, dangerRange);
+  }
+}
+
+export enum BudgetStatus {
+  GOOD = 'good-status',
+  CAUTION = 'caution-status',
+  DANGER = 'danger-status'
 }
