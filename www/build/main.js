@@ -958,6 +958,7 @@ var slideInOutAnimation = Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OverviewPage; });
+/* unused harmony export BudgetStatus */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_budget_service__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
@@ -992,6 +993,7 @@ var OverviewPage = /** @class */ (function () {
         this.daysLeft = 0;
         this.totalSpent = 0;
         this.expenses = [];
+        this.budgetStatus = BudgetStatus.GOOD;
         this.buildBudgetDashboard();
         this.events.subscribe('budget:updatedBudget', function (budget) {
             _this.buildBudgetDashboard(budget);
@@ -1010,6 +1012,7 @@ var OverviewPage = /** @class */ (function () {
         this.daysLeft = this.budget.remainingDays;
         this.totalSpent = this.budget.totalAmountSpent;
         this.sortExpensesDesc();
+        this.updateBudgetStatus();
     };
     OverviewPage.prototype.showExpenseModal = function (expense) {
         var modal = expense
@@ -1023,19 +1026,37 @@ var OverviewPage = /** @class */ (function () {
         });
         this.expenses = sortedExpenses;
     };
+    OverviewPage.prototype.updateBudgetStatus = function () {
+        var cautionRange = this.startingBudget * 0.35;
+        var dangerRange = this.startingBudget * 0.15;
+        if (this.remainingAmount > cautionRange) {
+            this.budgetStatus = BudgetStatus.GOOD;
+        }
+        else if (this.remainingAmount > dangerRange &&
+            this.remainingAmount <= cautionRange) {
+            this.budgetStatus = BudgetStatus.CAUTION;
+        }
+        else {
+            this.budgetStatus = BudgetStatus.DANGER;
+        }
+        console.log('OverviewComponent: Updated budget status', this.budgetStatus, cautionRange, dangerRange);
+    };
     OverviewPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-overview',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Overview</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showExpenseModal()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card class="budget">\n    <ion-card-header class="card-header">\n      LEFT TO SPEND\n    </ion-card-header>\n    <ion-card-content>\n      <div>\n        <div class="amount-remaining">{{remainingAmount | currency}} </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-4>\n        <div id="income" class="status-badge">\n          <div class="badge-header">{{daysLeft}}</div>\n          <div class="badge-body">DAYS LEFT</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="budget" class="status-badge">\n          <div class="badge-header">{{startingBudget | currency}}</div>\n          <div class="badge-body">BUDGET</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="spent" class="status-badge">\n          <div class="badge-header">{{totalSpent | currency}}</div>\n          <div class="badge-body">SPENT</div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid class="expenses-container">\n    <div class="expenses-header">Expenses</div>\n    <ion-row>\n      <ion-col col-12>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="expenses.length > 0">\n      <ion-col col-12>\n        <div class="expenses">\n          <ion-item-group>\n            <div *ngFor="let expense of expenses; let idx = index">\n              <ion-item-divider color="light" *ngIf="idx === 0 || (expense.date.getDate() !== expenses[idx - 1].date.getDate())">{{expense.date | date:\'EEEE, MMMM d\'}}</ion-item-divider>\n              <ion-item>\n                <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>\n                <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>\n              </ion-item>\n            </div>\n          </ion-item-group>\n        </div>\n      </ion-col>\n    </ion-row>\n    <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/
+            selector: 'page-overview',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Overview</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showExpenseModal()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card class="budget" [ngClass]="budgetStatus">\n    <ion-card-header class="card-header">\n      LEFT TO SPEND\n    </ion-card-header>\n    <ion-card-content>\n      <div>\n        <div class="amount-remaining">{{remainingAmount | currency}} </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-4>\n        <div id="income" class="status-badge" >\n          <div class="badge-header">{{daysLeft}}</div>\n          <div class="badge-body">DAYS LEFT</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="budget" class="status-badge">\n          <div class="badge-header">{{startingBudget | currency}}</div>\n          <div class="badge-body">BUDGET</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="spent" class="status-badge">\n          <div class="badge-header">{{totalSpent | currency}}</div>\n          <div class="badge-body">SPENT</div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid class="expenses-container">\n    <div class="expenses-header">Expenses</div>\n    <ion-row>\n      <ion-col col-12>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="expenses.length > 0">\n      <ion-col col-12>\n        <div class="expenses">\n          <ion-item-group>\n            <div *ngFor="let expense of expenses; let idx = index">\n              <ion-item-divider color="light" *ngIf="idx === 0 || (expense.date.getDate !== expenses[idx - 1].date.getDate)">{{expense.date | date:\'EEEE, MMMM d\'}}</ion-item-divider>\n              <ion-item>\n                <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>\n                <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>\n              </ion-item>\n            </div>\n          </ion-item-group>\n        </div>\n      </ion-col>\n    </ion-row>\n    <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>\n  </ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]) === "function" && _e || Object])
     ], OverviewPage);
     return OverviewPage;
+    var _a, _b, _c, _d, _e;
 }());
 
+var BudgetStatus;
+(function (BudgetStatus) {
+    BudgetStatus["GOOD"] = "good-status";
+    BudgetStatus["CAUTION"] = "caution-status";
+    BudgetStatus["DANGER"] = "danger-status";
+})(BudgetStatus || (BudgetStatus = {}));
 //# sourceMappingURL=overview.js.map
 
 /***/ }),
