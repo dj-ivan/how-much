@@ -4,7 +4,7 @@ import { CacheService } from './cache-service';
 import { Events } from 'ionic-angular';
 import { BudgetFrequency, CacheItems, Budget } from '../models/budget-model';
 import { v4 as uuid } from 'uuid';
-import { differenceInCalendarDays, addDays } from 'date-fns';
+import { differenceInCalendarDays, addDays, format } from 'date-fns';
 
 @Injectable()
 export class BudgetService {
@@ -99,7 +99,7 @@ export class BudgetService {
     console.log('budgetService: Updating Budget');
     let budget = this.cache.budget;
     let totalAmountSpent = this._calculateTotalSpent(budget);
-    let daysLeft = this._calculateDaysLeft(budget);
+    let daysLeft = this._calculateDaysLeft(budget.budgetEndDate);
     budget.remainingDays = daysLeft;
     budget.totalAmountSpent = totalAmountSpent;
     budget.remainingBudget = budget.startingBudget - totalAmountSpent;
@@ -113,8 +113,10 @@ export class BudgetService {
     return endDate;
   }
 
-  private _calculateDaysLeft(budget: Budget): number {
-    return differenceInCalendarDays(budget.budgetEndDate, budget.budgetStartingDate);
+  private _calculateDaysLeft(budgetEndDate: Date): number {
+    let endDate = format(budgetEndDate, 'MM/DD/YYYY');
+    let currentDate = format(new Date(), 'MM/DD/YYYY');
+    return differenceInCalendarDays(endDate, currentDate);
   }
 
   private _calculateTotalSpent(budget: Budget): number {
