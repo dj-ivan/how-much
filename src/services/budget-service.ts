@@ -1,4 +1,4 @@
-import { Expense } from './../models/expense-model';
+import { Expense, Category } from './../models/expense-model';
 import { Injectable } from '@angular/core';
 import { CacheService } from './cache-service';
 import { Events } from 'ionic-angular';
@@ -9,6 +9,47 @@ import { differenceInCalendarDays, addDays, format } from 'date-fns';
 @Injectable()
 export class BudgetService {
   constructor(private cache: CacheService, private events: Events) {}
+
+  public getCategories(): Category[] {
+    return [
+      {
+        name: 'Fast Food',
+        categoryId: 1
+      } as Category,
+      {
+        name: 'Restaurants',
+        categoryId: 2
+      } as Category,
+      {
+        name: 'Shopping',
+        categoryId: 3
+      } as Category,
+      {
+        name: 'Transportation',
+        categoryId: 4
+      } as Category,
+      {
+        name: 'Entertainment',
+        categoryId: 5
+      } as Category,
+      {
+        name: 'Personal Care',
+        categoryId: 6
+      } as Category,
+      {
+        name: 'Groceries',
+        categoryId: 7
+      } as Category,
+      {
+        name: 'Utilities',
+        categoryId: 8
+      } as Category,
+      {
+        name: 'Household Items',
+        categoryId: 9
+      } as Category
+    ];
+  }
 
   private _publishUpdatedExpenses() {
     console.log('PUBLISHED: budget:updatedExpenses');
@@ -92,6 +133,7 @@ export class BudgetService {
   }
 
   public getBudget(): Budget {
+    this._updateBudget();
     return this.cache.budget;
   }
 
