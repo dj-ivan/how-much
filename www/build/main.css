@@ -25938,6 +25938,7 @@ page-overview .expenses-container {
 
 page-overview .add-expense-cta {
   padding-top: 3rem;
+  margin: auto;
 }
 
 page-overview .add-expense-cta .add-expense-button {

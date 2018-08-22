@@ -28,9 +28,9 @@ export class AddExpenseModal {
     this.selectedCategory =
       editExpense && editExpense.category
         ? editExpense.category
-        : this.categories[0];
-    this.selectedDate =
-      editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
+        : null;
+    // this.selectedDate =
+    //   editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
 
   }
 
@@ -42,7 +42,7 @@ export class AddExpenseModal {
     let expense = {
       id: this.id ? this.id : '',
       amount: +this.amount,
-      date: this.selectedDate,
+      date: new Date(),
       name: this.name,
       category: this.selectedCategory
     } as Expense;

@@ -17,6 +17,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public cache: CacheService, public events: Events, public budget: BudgetService) {
     this.events.subscribe('cache:BudgetCacheLoaded', (budget) => {
+      console.log('HOME:cache loaded', budget)
       if (!budget || budget == null) {
         this.loading = false;
         this.budget.startNewBudget();
