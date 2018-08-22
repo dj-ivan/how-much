@@ -25846,6 +25846,10 @@ ion-navbar.toolbar {
   left: 2rem;
 }
 
+ion-select {
+  max-width: 50%;
+}
+
 page-overview {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
@@ -25930,4 +25934,13 @@ page-overview .status-badge .badge-body {
 
 page-overview .expenses-container {
   padding-top: 3rem;
+}
+
+page-overview .add-expense-cta {
+  padding-top: 3rem;
+  margin: auto;
+}
+
+page-overview .add-expense-cta .add-expense-button {
+  padding: 0 7em;
 }

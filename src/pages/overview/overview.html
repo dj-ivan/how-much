@@ -26,7 +26,7 @@
   <ion-grid>
     <ion-row>
       <ion-col col-4>
-        <div id="income" class="status-badge" >
+        <div id="income" class="status-badge">
           <div class="badge-header">{{daysLeft}}</div>
           <div class="badge-body">DAYS LEFT</div>
         </div>
@@ -56,10 +56,11 @@
         <div class="expenses">
           <ion-item-group>
             <div *ngFor="let expense of expenses; let idx = index">
-              <ion-item-divider color="light" *ngIf="idx === 0 || (expense.date.getDate !== expenses[idx - 1].date.getDate)">{{expense.date | date:'EEEE, MMMM d'}}</ion-item-divider>
-              <ion-item>
-                <ion-label ion-text ion-start>{{expense.name}} - {{expense.amount | currency}}</ion-label>
-                <button ion-button outline item-end (click)="showExpenseModal(expense)">Edit</button>
+              <ion-list-header color="light" *ngIf="idx === 0 || (expense.date.getDate < expenses[idx - 1].date.getDate)">{{expense.date
+                | date:'EEEE, MMMM d'}}</ion-list-header>
+              <ion-item class="expense-item" (click)="showExpenseModal(expense)">
+                <ion-label ion-text ion-start>{{expense.amount | currency}} - {{expense.name}}</ion-label>
+                <button ion-button outline item-end >Edit</button>
               </ion-item>
             </div>
           </ion-item-group>
@@ -67,6 +68,10 @@
       </ion-col>
     </ion-row>
     <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>
+    <ion-row>
+        <ion-item-group class="add-expense-cta">
+            <button class="add-expense-button" ion-button (click)="showExpenseModal()">Add Expense</button>
+          </ion-item-group>
+    </ion-row>
   </ion-grid>
-
 </ion-content>

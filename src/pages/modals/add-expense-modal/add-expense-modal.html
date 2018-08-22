@@ -14,22 +14,29 @@
 
 <ion-content>
   <ion-list>
-
     <ion-item>
       <ion-label floating>Name</ion-label>
       <ion-input type="text" [(ngModel)]="name"></ion-input>
     </ion-item>
-
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select [(ngModel)]="selectedCategory" [placeholder]="selectedCategory !== null ? selectedCategory.name : ''">
+        <div *ngFor="let category of categories">
+          <ion-option [value]="category">{{category.name}}</ion-option>
+        </div>
+      </ion-select>
+    </ion-item>
     <ion-item>
       <ion-label floating>Amount</ion-label>
       <ion-input type="number" [(ngModel)]="amount">$ </ion-input>
     </ion-item>
-
+    <!-- <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>
+    </ion-item> -->
   </ion-list>
   <div>
     <button *ngIf="id !== ''" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>
     <button class="add-expense" ion-button (click)="addExpense()">Add Expense</button>
   </div>
-
-
 </ion-content>

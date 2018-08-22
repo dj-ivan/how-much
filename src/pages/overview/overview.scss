@@ -83,4 +83,12 @@ page-overview {
     .expenses-container {
         padding-top: 3rem;
     }
+
+    .add-expense-cta {
+      padding-top: 3rem;
+      margin: auto;
+      .add-expense-button {
+        padding: 0 7em;
+      }
+    }
 }
