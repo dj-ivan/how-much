@@ -55,8 +55,8 @@
       <ion-col col-12>
         <div class="expenses">
           <ion-item-group>
-            <div *ngFor="let expense of expenses; let idx = index">
-              <ion-list-header color="light" *ngIf="idx === 0 || (expense.date.getDate < expenses[idx - 1].date.getDate)">{{expense.date
+            <div *ngFor="let expense of expenses; let idx = index;">
+              <ion-list-header color="light" *ngIf="idx === 0 || firstDateIsOlder(expenses[idx].date, expenses[idx-1].date)">{{expense.date
                 | date:'EEEE, MMMM d'}}</ion-list-header>
               <ion-item class="expense-item" (click)="showExpenseModal(expense)">
                 <ion-label ion-text ion-start>{{expense.amount | currency}} - {{expense.name}}</ion-label>

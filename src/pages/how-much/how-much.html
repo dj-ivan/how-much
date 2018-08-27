@@ -30,7 +30,7 @@
   </div>
 </form>
 
-<div class="cta-button" (click)="submitForm()">
-  Continue
+<div *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">
+  Create Budget
 </div>
 </ion-content>
