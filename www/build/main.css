@@ -25793,7 +25793,7 @@ ion-navbar.toolbar {
 .get-started-container {
   width: 100%;
   height: 100vh;
-  background: url("../assets/imgs/homepageImage_13.jpg");
+  background: url("../assets/imgs/background.png");
   background-position: bottom center;
   background-size: cover;
 }
@@ -25830,6 +25830,18 @@ ion-navbar.toolbar {
   background: rgba(0, 137, 123, 0.4);
   margin: 4rem auto;
   margin-top: -6px;
+  padding: 1rem 0;
+  font-size: 2.4rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.get-started-container .cta-button {
+  width: 75%;
+  border-radius: 6px;
+  border: 1px solid #ffffff;
+  background: rgba(0, 137, 123, 0.4);
+  margin: 4rem auto;
   padding: 1rem 0;
   font-size: 2.4rem;
   color: #ffffff;
