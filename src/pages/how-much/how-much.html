@@ -1,5 +1,9 @@
+
+
+
 <ion-content class="get-started-container" padding>
-    <div class="title">
+    <img class="header-logo" src="./../../assets/imgs/cutback-name.png">
+    <div class="budget-amount">
       How much are you allowing yourself to spend?
     </div>
     <form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
@@ -10,7 +14,7 @@
       </div>
     </form>
 
-  <div class="title">
+  <div class="budget-frequency">
     When does this budget expire?
   </div>
 <form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
@@ -26,7 +30,7 @@
   </div>
 </form>
 
-<div style="margin-top: 9rem;" class="cta-button" (click)="submitForm()">
+<div class="cta-button" (click)="submitForm()">
   Continue
 </div>
 </ion-content>
