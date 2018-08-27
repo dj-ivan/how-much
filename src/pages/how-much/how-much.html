@@ -9,7 +9,7 @@
     <form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
       <div style="text-align: center">
         <ion-item style="margin-top:35px; max-width:80%; display:inline-block;">
-          <ion-input type="tel" formControlName="budgetAmount" required>$ </ion-input>
+          <ion-input type="text" formControlName="budgetAmount"></ion-input>
         </ion-item>
       </div>
     </form>

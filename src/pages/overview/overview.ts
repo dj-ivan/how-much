@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Expense } from '../../models/expense-model';
 import { ModalController } from 'ionic-angular';
 import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
-import { compareDesc } from 'date-fns';
+import { compareDesc, format } from 'date-fns';
 
 @IonicPage()
 @Component({
@@ -70,7 +70,9 @@ export class OverviewPage {
   }
 
   public firstDateIsOlder(firstDate: Date, secondDate: Date) {
-    return compareDesc(firstDate, secondDate);
+    let first = format(firstDate, 'MM/DD/YYYY');
+    let second = format(secondDate, 'MM/DD/YYYY');
+    return compareDesc(first, second);
   }
 
   public updateBudgetStatus() {
