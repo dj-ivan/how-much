@@ -65,8 +65,12 @@ export class OverviewPage {
     let sortedExpenses = this.budget.expenses.sort((x, y) => {
       return compareDesc(x.date, y.date);
     });
-
+    sortedExpenses.forEach(e => e.date = new Date(e.date));
     this.expenses = sortedExpenses;
+  }
+
+  public firstDateIsOlder(firstDate: Date, secondDate: Date) {
+    return compareDesc(firstDate, secondDate);
   }
 
   public updateBudgetStatus() {

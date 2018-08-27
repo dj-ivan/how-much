@@ -1,16 +1,36 @@
+
+
+
 <ion-content class="get-started-container" padding>
-    <div class="title">
+    <img class="header-logo" src="./../../assets/imgs/cutback-name.png">
+    <div class="budget-amount">
       How much are you allowing yourself to spend?
     </div>
     <form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
-      <div *ngIf="textBoxVisible" style="text-align: center">
-        <ion-item style="margin-top:170px; max-width:60%; display:inline-block;">
-          <ion-input type="number"  formControlName="budgetAmount" required></ion-input>
+      <div style="text-align: center">
+        <ion-item style="margin-top:35px; max-width:80%; display:inline-block;">
+          <ion-input type="tel" formControlName="budgetAmount" required>$ </ion-input>
         </ion-item>
-        <button type="submit" ion-button icon-only class="arrow-button">
-            <ion-icon name="arrow-dropright"></ion-icon>
-        </button>
       </div>
     </form>
-</ion-content>
 
+  <div class="budget-frequency">
+    When does this budget expire?
+  </div>
+<form class="setup-user-form-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
+  <div style="text-align: center">
+    <ion-item style="margin-top:35px; max-width:80%; display:inline-block;">
+      <ion-label>How long?</ion-label>
+      <ion-select formControlName="budgetLength">
+        <ion-option value="w">Weekly</ion-option>
+        <ion-option value="bi">Bi-Weekly</ion-option>
+        <ion-option value="m">Monthly</ion-option>
+      </ion-select>
+    </ion-item>
+  </div>
+</form>
+
+<div *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">
+  Create Budget
+</div>
+</ion-content>

@@ -3,14 +3,20 @@
 .get-started-container {
   width: 100%;
   height: 100vh;
-  background: url('../assets/imgs/homepageImage_13.jpg');
+  background: url('../assets/imgs/background.png');
   background-position: bottom center;
   background-size: cover;
 
-  .title {
+  .header-logo {
+    margin: 0 auto;
+    display: block;
+    width: 40%;
+  }
+
+  .budget-amount {
     text-align: center;
-    font-size: 3rem;
-    padding-top: 9rem;
+    font-size: 2.5rem;
+    padding-top: 5.6rem;
     color: #ffffff;
 
     .budget {
@@ -20,7 +26,31 @@
       border-top: 2px solid #f7f7f7;
       display: block;
       margin: 5rem auto 0 auto;
-      width: 68%; 
+      width: 68%;
+    }
+
+    .easy {
+      font-family: 'Gloria Hallelujah', cursive;
+      font-weight: lighter;
+      font-size: 3.5rem;
+      padding: 0 2vw;
+    }
+  }
+
+  .budget-frequency {
+    text-align: center;
+    font-size: 2.5rem;
+    padding-top: 5rem;
+    color: #ffffff;
+
+    .budget {
+      font-size: 6rem;
+      font-weight: bold;
+      border-bottom: 2px solid #f7f7f7;
+      border-top: 2px solid #f7f7f7;
+      display: block;
+      margin: 5rem auto 0 auto;
+      width: 68%;
     }
 
     .easy {
@@ -44,4 +74,17 @@
     color: #ffffff;
     text-align: center;
   }
+
+  .cta-button {
+    width: 75%;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+    background: rgba(0, 137, 123, 0.4);
+    margin: 6.5rem auto;
+    padding: 1rem 0;
+    font-size: 2.4rem;
+    color: #ffffff;
+    text-align: center;
+  }
+
 }
