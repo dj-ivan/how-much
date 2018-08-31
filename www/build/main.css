@@ -25781,7 +25781,7 @@ ion-spinner * {
   color: #f7f7f7;
 }
 
-.get-started-container .header-logo {
+.get-started-container .header-img {
   margin: 0 auto;
   display: block;
   width: 40%;
@@ -25853,7 +25853,7 @@ ion-spinner * {
 }
 
 @media only screen and (min-width: 768px) {
-  .get-started-container .header-logo {
+  .get-started-container .header-img {
     width: 12rem;
     padding-top: 1rem;
   }

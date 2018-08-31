@@ -6,7 +6,7 @@
     background-size: cover;
     color: #f7f7f7;
 
-    .header-logo {
+    .header-img {
         margin: 0 auto;
         display: block;
         width: 40%;
@@ -82,7 +82,7 @@
 
 @media only screen and (min-width: 768px) {
     .get-started-container {
-        .header-logo {
+        .header-img {
             width: 12rem;
             padding-top: 1rem;
         }
