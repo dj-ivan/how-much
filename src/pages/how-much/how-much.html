@@ -22,7 +22,7 @@
       </div>
   </div>
 
-  <div *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">
+  <button ion-button *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">
     Create Budget
-  </div>
+  </button>
 </ion-content>
