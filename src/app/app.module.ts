@@ -8,7 +8,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { HowMuch } from '../pages/how-much/how-much';
-import { HowLong } from '../pages/how-long/how-long';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +16,7 @@ import { CacheService } from '../services/cache-service';
 import { StoreService } from '../services/store-service';
 import { OverviewPage } from '../pages/overview/overview';
 import { BudgetService } from '../services/budget-service';
+import { BrMaskerIonic3 } from '../directives/input-mask';
 
 @NgModule({
   declarations: [
@@ -24,9 +24,9 @@ import { BudgetService } from '../services/budget-service';
     HomePage,
     ListPage,
     HowMuch,
-    HowLong,
     OverviewPage,
-    AddExpenseModal
+    AddExpenseModal,
+    BrMaskerIonic3
   ],
   imports: [
     BrowserModule,
@@ -40,7 +40,6 @@ import { BudgetService } from '../services/budget-service';
     HomePage,
     ListPage,
     HowMuch,
-    HowLong,
     OverviewPage,
     AddExpenseModal
   ],
