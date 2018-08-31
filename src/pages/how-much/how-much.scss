@@ -4,7 +4,7 @@
     background: url("../assets/imgs/background.png");
     background-position: bottom center;
     background-size: cover;
-    color: rgb(255, 255, 255);
+    color: #f7f7f7;
 
     .header-logo {
         margin: 0 auto;
@@ -28,11 +28,11 @@
     .frequency-container {
         .segment-button {
             border-color: #193522;
-            color: white;
+            color: #f7f7f7;
 
             &.segment-activated {
                 background-color: #193522;
-                color: white;
+                color: #f7f7f7;
             }
         }
     }
@@ -45,11 +45,11 @@
     }
 
     .budget-amount-input {
-        content: '$';
-        color: #A5D6A7;
+        color: #f7f7f7;
         border: 1px solid #193522;
         width: 50%;
         margin: 0 auto;
+        border-radius: 6px;
     }
 
     .cta-button {

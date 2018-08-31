@@ -25752,7 +25752,7 @@ ion-navbar.toolbar {
   background: url("../assets/imgs/background.png");
   background-position: bottom center;
   background-size: cover;
-  color: white;
+  color: #f7f7f7;
 }
 
 .get-started-container .header-logo {
@@ -25776,12 +25776,12 @@ ion-navbar.toolbar {
 
 .get-started-container .frequency-container .segment-button {
   border-color: #193522;
-  color: white;
+  color: #f7f7f7;
 }
 
 .get-started-container .frequency-container .segment-button.segment-activated {
   background-color: #193522;
-  color: white;
+  color: #f7f7f7;
 }
 
 .get-started-container .budget-amount-title {
@@ -25792,11 +25792,11 @@ ion-navbar.toolbar {
 }
 
 .get-started-container .budget-amount-input {
-  content: '$';
-  color: #A5D6A7;
+  color: #f7f7f7;
   border: 1px solid #193522;
   width: 50%;
   margin: 0 auto;
+  border-radius: 6px;
 }
 
 .get-started-container .cta-button {
