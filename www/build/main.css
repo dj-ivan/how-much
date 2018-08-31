@@ -25686,6 +25686,12 @@ ion-navbar.toolbar {
   background-size: cover;
 }
 
+.welcome-container .header-logo {
+  margin: 0 auto;
+  display: block;
+  width: 40%;
+}
+
 .welcome-container .title {
   text-align: center;
   font-size: 2.5rem;
@@ -25791,6 +25797,7 @@ ion-navbar.toolbar {
   background: url("../assets/imgs/background.png");
   background-position: bottom center;
   background-size: cover;
+  color: #A5D6A7;
 }
 
 .get-started-container .header-logo {
@@ -25799,64 +25806,51 @@ ion-navbar.toolbar {
   width: 40%;
 }
 
-.get-started-container .budget-amount {
+.get-started-container .create-budget {
   text-align: center;
-  font-size: 2.5rem;
-  padding-top: 5.6rem;
-  color: #ffffff;
 }
 
-.get-started-container .budget-amount .budget {
-  font-size: 6rem;
-  font-weight: bold;
-  border-bottom: 2px solid #f7f7f7;
-  border-top: 2px solid #f7f7f7;
-  display: block;
-  margin: 5rem auto 0 auto;
-  width: 68%;
+.get-started-container .budget-length-title {
+  margin-bottom: 2rem;
+  font-size: 4vw;
+  padding-top: 2rem;
+  text-align: center;
 }
 
-.get-started-container .budget-amount .easy {
+.get-started-container .easy {
   font-weight: lighter;
   font-size: 3.5rem;
   padding: 0 2vw;
 }
 
-.get-started-container .budget-frequency {
-  text-align: center;
-  font-size: 2.5rem;
+.get-started-container .frequency-container .segment-button {
+  border-color: #193522;
+  color: #193522;
+}
+
+.get-started-container .frequency-container .segment-button.segment-activated {
+  background-color: #193522;
+  color: #A5D6A7;
+}
+
+.get-started-container .budget-amount-title {
+  margin-bottom: 2rem;
+  font-size: 4vw;
   padding-top: 5rem;
-  color: #ffffff;
+  text-align: center;
 }
 
-.get-started-container .budget-frequency .budget {
-  font-size: 6rem;
-  font-weight: bold;
-  border-bottom: 2px solid #f7f7f7;
-  border-top: 2px solid #f7f7f7;
-  display: block;
-  margin: 5rem auto 0 auto;
-  width: 68%;
-}
-
-.get-started-container .budget-frequency .easy {
+.get-started-container .easy {
   font-weight: lighter;
   font-size: 3.5rem;
   padding: 0 2vw;
 }
 
-.get-started-container .arrow-button {
-  width: 12%;
-  height: 10%;
-  border-radius: 6px;
-  border: 1px solid #ffffff;
-  background: rgba(0, 137, 123, 0.4);
-  margin: 4rem auto;
-  margin-top: -6px;
-  padding: 1rem 0;
-  font-size: 2.4rem;
-  color: #ffffff;
-  text-align: center;
+.get-started-container .budget-amount-input {
+  color: #A5D6A7;
+  border: 1px solid #193522;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .get-started-container .cta-button {
