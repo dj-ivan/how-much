@@ -402,7 +402,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/'<ion-content class="welcome-container" padding>\n  <div class="title">\n    It\'s time to <br> <span class="budget">CutBack</span> <br> to start saving money.\n  </div>\n\n  <ion-spinner class="spinner" name="circles" *ngIf="loading"></ion-spinner>\n  <div *ngIf="!loading" class="cta-button" (click)="navigateToSetup()">\n    Get Started\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/'<ion-content class="welcome-container" padding>\n    <img class="header-logo" src="./../../assets/imgs/cutback-name.png">\n  <div class="title">\n    It\'s time to <br> <span class="budget">CutBack</span> <br> to start saving money.\n  </div>\n\n  <ion-spinner class="spinner" name="circles" *ngIf="loading"></ion-spinner>\n  <div *ngIf="!loading" class="cta-button" (click)="navigateToSetup()">\n    Get Started\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__services_cache_service__["a" /* CacheService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */], __WEBPACK_IMPORTED_MODULE_5__services_budget_service__["a" /* BudgetService */]])
     ], HomePage);
@@ -983,7 +983,7 @@ var slideInOutAnimation = Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["i" /* transition */])(':enter', [
         // styles at start of transition
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["h" /* style */])({
-            // start with the content positioned off the right of the screen,
+            // start with the content positioned off the right of the screen, 
             // -400% is required instead of -100% because the negative position adds to the width of the element
             right: '-400%',
             // start with background opacity set to 0 (invisible)

@@ -25810,14 +25810,17 @@ ion-navbar.toolbar {
   text-align: center;
 }
 
-.get-started-container .budget-amount .easy {
+.get-started-container .budget-length-title {
+  margin-bottom: 2rem;
+  font-size: 4vw;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.get-started-container .easy {
   font-weight: lighter;
   font-size: 3.5rem;
   padding: 0 2vw;
-}
-
-.get-started-container .budget-frequency {
-  text-align: center;
 }
 
 .get-started-container .frequency-container .segment-button {
@@ -25835,6 +25838,12 @@ ion-navbar.toolbar {
   font-size: 4vw;
   padding-top: 5rem;
   text-align: center;
+}
+
+.get-started-container .easy {
+  font-weight: lighter;
+  font-size: 3.5rem;
+  padding: 0 2vw;
 }
 
 .get-started-container .budget-amount-input {
