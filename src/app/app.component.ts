@@ -7,7 +7,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { HowMuch } from '../pages/how-much/how-much';
-import { HowLong } from '../pages/how-long/how-long';
 import { CacheService } from '../services/cache-service';
 
 @Component({
@@ -28,7 +27,6 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'How Much', component: HowMuch},
-      { title: 'How Long', component: HowLong},
       { title: 'Overview', component: OverviewPage}
     ];
 
