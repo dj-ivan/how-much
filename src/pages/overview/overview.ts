@@ -7,7 +7,6 @@ import { ModalController } from 'ionic-angular';
 import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
 import { compareDesc, format } from 'date-fns';
 
-@IonicPage()
 @Component({
   selector: 'page-overview',
   templateUrl: 'overview.html'
