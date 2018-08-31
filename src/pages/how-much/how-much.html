@@ -14,7 +14,7 @@
             </ion-segment-button>
           </ion-segment>
           <div class="budget-amount-title">How much money would you like to spend?</div>
-            <ion-input class="budget-amount-input" [class.invalid]="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)" type="text" placeholder="$0.00" [brmasker]="{len:11, money: true, type: 'num', decimalCaracter: '.', thousand: ','}" formControlName="budgetAmount"></ion-input>
+            <ion-input class="budget-amount-input" [class.invalid]="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)" type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, type: 'num', decimalCaracter: '.', thousand: ','}" formControlName="budgetAmount"></ion-input>
             <div class="error" *ngIf="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)">
                 Amount is required.
               </div>
