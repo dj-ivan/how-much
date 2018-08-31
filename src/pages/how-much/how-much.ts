@@ -15,6 +15,7 @@ import { OverviewPage } from '../overview/overview';
 export class HowMuch {
   public userForm: FormGroup;
   public textBoxVisible: boolean; 
+  public submitAttempt = false;
 
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private budgetService: BudgetService) {
     this.textBoxVisible = false;
@@ -32,6 +33,12 @@ export class HowMuch {
   }
 
   public submitForm() {
+    this.submitAttempt = true;
+
+    if (!this.userForm.valid) {
+      return;
+  }
+
     let strippedValue = this.userForm.value.budgetAmount.toString().replace('$','');;
     this.budgetService.setNewStartingBudget(+strippedValue);
     switch (this.userForm.value.budgetLength) {
