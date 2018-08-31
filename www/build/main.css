@@ -25678,56 +25678,69 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-.welcome-container {
-  width: 100%;
-  height: 100vh;
-  background: url("../assets/imgs/homepageImage_6.jpg");
+.header-logo {
+  padding-top: 1rem;
+  z-index: 10;
+  width: 30vw;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.home-slide-container {
+  color: #f7f7f7;
+  position: relative;
+}
+
+.home-slide-container .slide-one {
+  background: url("../assets/imgs/homepageImage_6-overlay.jpg");
   background-position: bottom center;
   background-size: cover;
 }
 
-.welcome-container .header-logo {
-  margin: 0 auto;
-  display: block;
-  width: 40%;
+.home-slide-container .slide-two {
+  background: url("../assets/imgs/homepageImage_7-overlay.jpg");
+  background-position: bottom center;
+  background-size: cover;
 }
 
-.welcome-container .title {
+.home-slide-container .slide-three {
+  background: url("../assets/imgs/homepageImage_11-overlay.jpg");
+  background-position: bottom center;
+  background-size: cover;
+}
+
+.home-slide-container .next-button {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  bottom: 4rem;
+  padding: 0 2em;
+}
+
+.home-slide-container .slide-text-container {
+  width: 90%;
   text-align: center;
-  font-size: 2.5rem;
-  padding-top: 9rem;
-  color: #ffffff;
+  margin: -16rem auto 0 auto;
 }
 
-.welcome-container .title .budget {
-  font-size: 5.6rem;
-  font-weight: bold;
-  border-bottom: 2px solid #f7f7f7;
-  border-top: 2px solid #f7f7f7;
-  display: block;
-  margin: 5rem auto 0 auto;
-  width: 68%;
+.home-slide-container .slide-text-container .slide-header {
+  font-size: 9vw;
+  font-weight: 800;
+  padding-bottom: 3rem;
 }
 
-.welcome-container .title .easy {
-  font-weight: lighter;
-  font-size: 3.5rem;
-  padding: 0 1vw;
+.home-slide-container .swiper-pagination-bullets {
+  bottom: 12rem;
 }
 
-.welcome-container .cta-button {
-  width: 75%;
-  border-radius: 6px;
-  border: 1px solid #ffffff;
-  background: rgba(0, 137, 123, 0.4);
-  margin: 4rem auto;
-  padding: 1rem 0;
-  font-size: 2.4rem;
-  color: #ffffff;
-  text-align: center;
+.home-slide-container .swiper-pagination-bullet-active {
+  background: #66bb6a;
 }
 
-.welcome-container .spinner {
+.spinner {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -25739,11 +25752,24 @@ ion-navbar.toolbar {
   height: 28px;
 }
 
-.welcome-container ion-spinner * {
+ion-spinner * {
   width: 28px;
   height: 28px;
   stroke: #ffffff;
   fill: #ffffff;
+}
+
+@media only screen and (min-width: 414px) {
+  .header-logo {
+    width: 12rem;
+  }
+  .home-slide-container .slide-text-container {
+    width: 34rem;
+  }
+  .home-slide-container .slide-text-container .slide-header {
+    font-size: 4rem;
+    padding-bottom: 3rem;
+  }
 }
 
 .get-started-container {
@@ -25755,7 +25781,7 @@ ion-navbar.toolbar {
   color: #f7f7f7;
 }
 
-.get-started-container .header-logo {
+.get-started-container .header-img {
   margin: 0 auto;
   display: block;
   width: 40%;
@@ -25827,7 +25853,7 @@ ion-navbar.toolbar {
 }
 
 @media only screen and (min-width: 768px) {
-  .get-started-container .header-logo {
+  .get-started-container .header-img {
     width: 12rem;
     padding-top: 1rem;
   }

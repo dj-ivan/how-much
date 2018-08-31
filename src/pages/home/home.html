@@ -1,11 +1,30 @@
-<ion-content class="welcome-container" padding>
-    <img class="header-logo" src="./../../assets/imgs/cutback-name.png">
-  <div class="title">
-    It's time to <br> <span class="budget">CutBack</span> <br> to start saving money.
-  </div>
+<img class="header-logo" src="./../../assets/imgs/cutback-name-white.png">
 
-  <ion-spinner class="spinner" name="circles" *ngIf="loading"></ion-spinner>
-  <div *ngIf="!loading" class="cta-button" (click)="navigateToSetup()">
-    Get Started
-  </div>
-</ion-content>
+<!-- Slide Content -->
+<ion-slides class="home-slide-container" pager>
+  <ion-slide class="slide-one">
+    <div class="slide-text-container">
+      <h1 class="slide-header">Fast easy budget <br> to track spending</h1>
+      <p class="slide-sub-text">You choose how much you want to spend and for how long, then CutBack will help you maintain
+        your budget.</p>
+    </div>
+    <button class="next-button" ion-button (click)="goToSlide(1)">Learn More</button>
+  </ion-slide>
+
+  <ion-slide class="slide-two">
+    <div class="slide-text-container">
+      <h1 class="slide-header">No Time <br> No Problem</h1>
+      <p class="slide-sub-text">Quickly log your expenses and Cutback will show you how much you have left to spend.</p>
+    </div>
+    <button class="next-button" ion-button (click)="goToSlide(2)">Learn More</button>
+  </ion-slide>
+
+  <ion-slide class="slide-three">
+    <div class="slide-text-container">
+      <h1 class="slide-header">Your information <br> Is private</h1>
+      <p class="slide-sub-text">We store everything to only your device. Not even Uncle Sam can get to it.</p>
+    </div>
+    <button class="next-button" ion-button (click)="navigateToSetup()">Create Budget</button>
+  </ion-slide>
+
+</ion-slides>

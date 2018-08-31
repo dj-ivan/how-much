@@ -6,7 +6,7 @@
     background-size: cover;
     color: #f7f7f7;
 
-    .header-logo {
+    .header-img {
         margin: 0 auto;
         display: block;
         width: 40%;
@@ -61,42 +61,43 @@
 
     .budget-inputs-outer-container {
         text-align: center;
-    background: rgba(0, 0, 0, 0.2);
-    width: 100%;
-    padding-bottom: 16px;
+        background: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        padding-bottom: 16px;
     }
 
     .budget-inputs-inner-container {
         width: 90%;
         margin: 0 auto;
-        }
-        .invalid {
-            border: 1px solid #ea6153;
-        }
-        .error {
-            color: #ea6153;
-        }
+    }
+
+    .invalid {
+        border: 1px solid #ea6153;
+    }
+
+    .error {
+        color: #ea6153;
+    }
 }
 
-
 @media only screen and (min-width: 768px) {
-    .get-started-container {    
-        .header-logo {
+    .get-started-container {
+        .header-img {
             width: 12rem;
             padding-top: 1rem;
         }
-    
+
         .create-budget {
             margin-bottom: 2rem;
             font-size: 3.6rem;
         }
-    
+
         .budget-length-title {
             margin-bottom: 2rem;
             font-size: 3rem;
             padding-top: 2rem;
         }
-    
+
         .frequency-container {
             .segment-button {
                 height: 4rem;
@@ -109,23 +110,23 @@
             font-size: 3rem;
             padding-top: 5rem;
         }
-    
+
         .budget-amount-input {
             width: 44rem;
             font-size: 2rem;
         }
-    
+
         .cta-button {
             margin: 17rem auto;
             padding: 0 24rem;
             font-size: 2.5rem;
         }
-    
+
         .budget-inputs-outer-container {
-        width: 100%;
-        padding-bottom: 16px;
+            width: 100%;
+            padding-bottom: 16px;
         }
-    
+
         .budget-inputs-inner-container {
             width: 80rem;
         }
