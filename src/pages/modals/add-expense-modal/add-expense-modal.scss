@@ -11,3 +11,11 @@
 ion-select {
   max-width: 50%;
 }
+
+.invalid {
+  border: 1px solid #ea6153;
+}
+.error {
+  padding-left: 16px;
+  color: #ea6153;
+}

@@ -25845,6 +25845,15 @@ ion-select {
   max-width: 50%;
 }
 
+.invalid {
+  border: 1px solid #ea6153;
+}
+
+.error {
+  padding-left: 16px;
+  color: #ea6153;
+}
+
 page-overview {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
