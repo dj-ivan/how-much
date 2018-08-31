@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
 import { Expense } from '../../../models/expense-model';
 import { BudgetService } from '../../../services/budget-service';
-import { parse } from 'date-fns';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+// import { parse } from 'date-fns';
+
 @Component({
   selector: 'add-expense',
   templateUrl: 'add-expense-modal.html'
@@ -15,11 +17,13 @@ export class AddExpenseModal {
   public categories: Category[] = this.budgetService.getCategories();
   public selectedCategory: Category = this.categories[0];
   public selectedDate ;
+  public userForm: FormGroup;
+  public submitAttempt = false;
 
   constructor(
     private viewCtrl: ViewController,
     private budgetService: BudgetService,
-    private params: NavParams
+    private params: NavParams, private formBuilder: FormBuilder
   ) {
     let editExpense = this.params.get('expense');
     this.name = editExpense && editExpense.name ? editExpense.name : '';
@@ -31,7 +35,11 @@ export class AddExpenseModal {
         : null;
     // this.selectedDate =
     //   editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
-
+    this.userForm = this.formBuilder.group({
+      expenseName: ['', Validators.required],
+      expenseCategory: ['', Validators.required],
+      expenseAmount: ['', Validators.required],
+    });
   }
 
   ionViewDidLoad() {
@@ -39,9 +47,15 @@ export class AddExpenseModal {
   }
 
   public addExpense() {
+    this.submitAttempt = true;
+
+    if (!this.userForm.valid) {
+      return;
+  }
+  let strippedValue = this.amount.toString().replace('$','');
     let expense = {
       id: this.id ? this.id : '',
-      amount: +this.amount,
+      amount: +strippedValue,
       date: new Date(),
       name: this.name,
       category: this.selectedCategory

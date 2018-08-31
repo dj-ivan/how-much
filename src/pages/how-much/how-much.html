@@ -1,22 +1,28 @@
-<ion-content class="get-started-container" padding>
-  <img class="header-logo" src="./../../assets/imgs/cutback-name.png">
+<ion-content class="get-started-container">
+  <img class="header-logo" src="./../../assets/imgs/cutback-name-white.png" padding>
   <h1 class="create-budget">Create a budget</h1>
-  <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">
-    <div class="budget-length-title">How long would you like to budget your money?</div>
-    <ion-segment class="frequency-container" formControlName="budgetLength">
-      <ion-segment-button class="segment-button" [value]="'w'">
-        Weekly
-      </ion-segment-button>
-      <ion-segment-button [value]="'bi'">
-        Bi-Weekly
-      </ion-segment-button>
-    </ion-segment>
-    <div class="budget-amount-title">How much money would you like to spend?</div>
-      <ion-input class="budget-amount-input" type="number" placeholder="$" formControlName="budgetAmount"></ion-input>
-  </form>
-
-
-  <div *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">
-    Create Budget
+  <div class="budget-inputs-outer-container">
+      <div class="budget-inputs-inner-container">
+        <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">
+          <div class="budget-length-title">How long would you like to budget your money?</div>
+          <ion-segment class="frequency-container" formControlName="budgetLength">
+            <ion-segment-button class="segment-button" [value]="'w'">
+              Weekly
+            </ion-segment-button>
+            <ion-segment-button [value]="'bi'">
+              Bi-Weekly
+            </ion-segment-button>
+          </ion-segment>
+          <div class="budget-amount-title">How much money would you like to spend?</div>
+            <ion-input class="budget-amount-input" [class.invalid]="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)" type="text" placeholder="$0.00" [brmasker]="{len:11, money: true, type: 'num', decimalCaracter: '.', thousand: ','}" formControlName="budgetAmount"></ion-input>
+            <div class="error" *ngIf="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)">
+                Amount is required.
+              </div>
+        </form>
+      </div>
   </div>
+
+  <button ion-button *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">
+    Create Budget
+  </button>
 </ion-content>

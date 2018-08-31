@@ -25772,68 +25772,25 @@ ion-spinner * {
   }
 }
 
-.how-long-container {
-  width: 100%;
-  height: 100vh;
-  background: url("../assets/imgs/homepageImage_11.jpg");
-  background-position: bottom center;
-  background-size: cover;
-}
-
-.how-long-container .title {
-  text-align: center;
-  font-size: 3rem;
-  padding-top: 9rem;
-  color: #ffffff;
-}
-
-.how-long-container .title .budget {
-  font-size: 6rem;
-  font-weight: bold;
-  border-bottom: 2px solid #f7f7f7;
-  border-top: 2px solid #f7f7f7;
-  display: block;
-  margin: 5rem auto 0 auto;
-  width: 68%;
-}
-
-.how-long-container .title .easy {
-  font-weight: lighter;
-  font-size: 3.5rem;
-  padding: 0 2vw;
-}
-
-.how-long-container .arrow-button {
-  width: 12%;
-  height: 10%;
-  border-radius: 6px;
-  border: 1px solid #ffffff;
-  background: rgba(0, 137, 123, 0.4);
-  margin: 4rem auto;
-  margin-top: -6px;
-  padding: 1rem 0;
-  font-size: 2.4rem;
-  color: #ffffff;
-  text-align: center;
-}
-
 .get-started-container {
   width: 100%;
   height: 100vh;
   background: url("../assets/imgs/background.png");
   background-position: bottom center;
   background-size: cover;
-  color: #A5D6A7;
+  color: #f7f7f7;
 }
 
 .get-started-container .header-logo {
   margin: 0 auto;
   display: block;
   width: 40%;
+  padding-bottom: 6rem !important;
 }
 
 .get-started-container .create-budget {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .get-started-container .budget-length-title {
@@ -25843,20 +25800,14 @@ ion-spinner * {
   text-align: center;
 }
 
-.get-started-container .easy {
-  font-weight: lighter;
-  font-size: 3.5rem;
-  padding: 0 2vw;
-}
-
 .get-started-container .frequency-container .segment-button {
   border-color: #193522;
-  color: #193522;
+  color: #f7f7f7;
 }
 
 .get-started-container .frequency-container .segment-button.segment-activated {
   background-color: #193522;
-  color: #A5D6A7;
+  color: #f7f7f7;
 }
 
 .get-started-container .budget-amount-title {
@@ -25866,29 +25817,80 @@ ion-spinner * {
   text-align: center;
 }
 
-.get-started-container .easy {
-  font-weight: lighter;
-  font-size: 3.5rem;
-  padding: 0 2vw;
-}
-
 .get-started-container .budget-amount-input {
-  color: #A5D6A7;
+  color: #f7f7f7;
   border: 1px solid #193522;
   width: 50%;
   margin: 0 auto;
+  border-radius: 6px;
 }
 
 .get-started-container .cta-button {
-  width: 75%;
-  border-radius: 6px;
-  border: 1px solid #ffffff;
-  background: rgba(0, 137, 123, 0.4);
-  margin: 6.5rem auto;
-  padding: 1rem 0;
-  font-size: 2.4rem;
-  color: #ffffff;
+  display: block;
+  margin: 17rem auto;
+  padding: 0 27vw;
+  font-size: 4vw;
+}
+
+.get-started-container .budget-inputs-outer-container {
   text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.get-started-container .budget-inputs-inner-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.get-started-container .invalid {
+  border: 1px solid #ea6153;
+}
+
+.get-started-container .error {
+  color: #ea6153;
+}
+
+@media only screen and (min-width: 768px) {
+  .get-started-container .header-logo {
+    width: 12rem;
+    padding-top: 1rem;
+  }
+  .get-started-container .create-budget {
+    margin-bottom: 2rem;
+    font-size: 3.6rem;
+  }
+  .get-started-container .budget-length-title {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    padding-top: 2rem;
+  }
+  .get-started-container .frequency-container .segment-button {
+    height: 4rem;
+    font-size: 2.5rem;
+  }
+  .get-started-container .budget-amount-title {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    padding-top: 5rem;
+  }
+  .get-started-container .budget-amount-input {
+    width: 44rem;
+    font-size: 2rem;
+  }
+  .get-started-container .cta-button {
+    margin: 17rem auto;
+    padding: 0 24rem;
+    font-size: 2.5rem;
+  }
+  .get-started-container .budget-inputs-outer-container {
+    width: 100%;
+    padding-bottom: 16px;
+  }
+  .get-started-container .budget-inputs-inner-container {
+    width: 80rem;
+  }
 }
 
 .add-expense {
@@ -25903,6 +25905,15 @@ ion-spinner * {
 
 ion-select {
   max-width: 50%;
+}
+
+.invalid {
+  border: 1px solid #ea6153;
+}
+
+.error {
+  padding-left: 16px;
+  color: #ea6153;
 }
 
 page-overview {
