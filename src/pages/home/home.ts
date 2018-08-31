@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HowMuch } from '../how-much/how-much';
 import { CacheService } from '../../services/cache-service';
 import { Events } from 'ionic-angular';
 import { OverviewPage } from '../overview/overview';
 import { BudgetService } from '../../services/budget-service';
+import { Slides } from 'ionic-angular';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { BudgetService } from '../../services/budget-service';
   templateUrl: 'home.html',
 })
 export class HomePage {
-
+  @ViewChild(Slides) slides: Slides;
   public loading = true;
 
   constructor(public navCtrl: NavController, public cache: CacheService, public events: Events, public budget: BudgetService) {
@@ -29,6 +30,10 @@ export class HomePage {
 
     this.cache.getBudgetFromCache();
 
+  }
+
+  public goToSlide(idx: number) {
+    this.slides.slideTo(idx, 500);
   }
 
   public navigateToSetup() {

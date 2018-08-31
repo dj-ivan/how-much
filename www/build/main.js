@@ -163,7 +163,7 @@ var AddExpenseModal = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'add-expense',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Add Expense\n    </ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <ion-item>\n      <ion-label floating>Name</ion-label>\n      <ion-input type="text" [(ngModel)]="name"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label>Category</ion-label>\n      <ion-select [(ngModel)]="selectedCategory" [placeholder]="selectedCategory !== null ? selectedCategory.name : \'\'">\n        <div *ngFor="let category of categories">\n          <ion-option [value]="category">{{category.name}}</ion-option>\n        </div>\n      </ion-select>\n    </ion-item>\n    <ion-item>\n      <ion-label floating>Amount</ion-label>\n      <ion-input type="number" [(ngModel)]="amount">$ </ion-input>\n    </ion-item>\n    <!-- <ion-item>\n      <ion-label>Date</ion-label>\n      <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>\n    </ion-item> -->\n  </ion-list>\n  <div>\n    <button *ngIf="id !== \'\'" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>\n    <button class="add-expense" ion-button (click)="addExpense()">Add Expense</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */],
             __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], AddExpenseModal);
@@ -372,6 +372,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, cache, events, budget) {
         var _this = this;
@@ -392,6 +393,9 @@ var HomePage = /** @class */ (function () {
         });
         this.cache.getBudgetFromCache();
     }
+    HomePage.prototype.goToSlide = function (idx) {
+        this.slides.slideTo(idx, 500);
+    };
     HomePage.prototype.navigateToSetup = function () {
         // navigate to the new page if it is not the current page
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__how_much_how_much__["a" /* HowMuch */]);
@@ -400,9 +404,13 @@ var HomePage = /** @class */ (function () {
         // navigate to the new page if it is not the current page
         this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_4__overview_overview__["a" /* OverviewPage */]);
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Slides */]),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Slides */])
+    ], HomePage.prototype, "slides", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/'<ion-content class="welcome-container" padding>\n    <img class="header-logo" src="./../../assets/imgs/cutback-name.png">\n  <div class="title">\n    It\'s time to <br> <span class="budget">CutBack</span> <br> to start saving money.\n  </div>\n\n  <ion-spinner class="spinner" name="circles" *ngIf="loading"></ion-spinner>\n  <div *ngIf="!loading" class="cta-button" (click)="navigateToSetup()">\n    Get Started\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/'<img class="header-logo" src="./../../assets/imgs/cutback-name-white.png">\n\n<!-- Slide Content -->\n<ion-slides class="home-slide-container" pager>\n  <ion-slide class="slide-one">\n    <div class="slide-text-container">\n      <h1 class="slide-header">Fast easy budget <br> to track spending</h1>\n      <p class="slide-sub-text">You choose how much you want to spend and for how long, then CutBack will help you maintain\n        your budget.</p>\n    </div>\n    <button class="next-button" ion-button (click)="goToSlide(1)">Learn More</button>\n  </ion-slide>\n\n  <ion-slide class="slide-two">\n    <div class="slide-text-container">\n      <h1 class="slide-header">No Time <br> No Problem</h1>\n      <p class="slide-sub-text">Quickly log your expenses and Cutback will show you how much you have left to spend.</p>\n    </div>\n    <button class="next-button" ion-button (click)="goToSlide(2)">Learn More</button>\n  </ion-slide>\n\n  <ion-slide class="slide-three">\n    <div class="slide-text-container">\n      <h1 class="slide-header">Your information <br> Is private</h1>\n      <p class="slide-sub-text">We store everything to only your device. Not even Uncle Sam can get to it.</p>\n    </div>\n    <button class="next-button" ion-button (click)="navigateToSetup()">Create Budget</button>\n  </ion-slide>\n\n</ion-slides>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/home/home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__services_cache_service__["a" /* CacheService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* Events */], __WEBPACK_IMPORTED_MODULE_5__services_budget_service__["a" /* BudgetService */]])
     ], HomePage);
@@ -1110,13 +1118,10 @@ var OverviewPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
             selector: 'page-overview',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Overview</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showExpenseModal()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card class="budget" [ngClass]="budgetStatus">\n    <ion-card-header class="card-header">\n      LEFT TO SPEND\n    </ion-card-header>\n    <ion-card-content>\n      <div>\n        <div class="amount-remaining">{{remainingAmount | currency}} </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-4>\n        <div id="income" class="status-badge">\n          <div class="badge-header">{{daysLeft}}</div>\n          <div class="badge-body">DAYS LEFT</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="budget" class="status-badge">\n          <div class="badge-header">{{startingBudget | currency}}</div>\n          <div class="badge-body">BUDGET</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="spent" class="status-badge">\n          <div class="badge-header">{{totalSpent | currency}}</div>\n          <div class="badge-body">SPENT</div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid class="expenses-container">\n    <div class="expenses-header">Expenses</div>\n    <ion-row>\n      <ion-col col-12>\n      </ion-col>\n    </ion-row>\n    <ion-row *ngIf="expenses.length > 0">\n      <ion-col col-12>\n        <div class="expenses">\n          <ion-item-group>\n            <div *ngFor="let expense of expenses; let idx = index;">\n              <ion-list-header color="light" *ngIf="idx === 0 || firstDateIsOlder(expenses[idx].date, expenses[idx-1].date)">{{expense.date\n                | date:\'EEEE, MMMM d\'}}</ion-list-header>\n              <ion-item class="expense-item" (click)="showExpenseModal(expense)">\n                <ion-label ion-text ion-start>{{expense.amount | currency}} - {{expense.name}}</ion-label>\n                <button ion-button outline item-end >Edit</button>\n              </ion-item>\n            </div>\n          </ion-item-group>\n        </div>\n      </ion-col>\n    </ion-row>\n    <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>\n    <ion-row>\n        <ion-item-group class="add-expense-cta">\n            <button class="add-expense-button" ion-button (click)="showExpenseModal()">Add Expense</button>\n          </ion-item-group>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__services_budget_service__["a" /* BudgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* Events */]) === "function" && _e || Object])
     ], OverviewPage);
     return OverviewPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 var BudgetStatus;

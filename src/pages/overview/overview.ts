@@ -1,7 +1,7 @@
 import { BudgetService } from './../../services/budget-service';
 import { BudgetFrequency, Budget } from './../../models/budget-model';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { Expense } from '../../models/expense-model';
 import { ModalController } from 'ionic-angular';
 import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
