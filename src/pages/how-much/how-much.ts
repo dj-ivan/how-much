@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
@@ -14,10 +14,16 @@ import { OverviewPage } from '../overview/overview';
 })
 export class HowMuch {
   public userForm: FormGroup;
-  public textBoxVisible: boolean; 
+  public textBoxVisible: boolean;
   public submitAttempt = false;
+  public showCustomDaysInput = false;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private budgetService: BudgetService) {
+  constructor(
+    public navCtrl: NavController,
+    private formBuilder: FormBuilder,
+    private budgetService: BudgetService,
+    private alertCtrl: AlertController
+  ) {
     this.textBoxVisible = false;
     setTimeout(() => {
       this.showTextBox();
@@ -37,26 +43,16 @@ export class HowMuch {
 
     if (!this.userForm.valid) {
       return;
-  }
-
-    let strippedValue = this.userForm.value.budgetAmount.toString().replace('$','');
-    this.budgetService.setNewStartingBudget(+strippedValue);
-    switch (this.userForm.value.budgetLength) {
-      case 'w':
-      this.budgetService.setBudgetFrequency(BudgetFrequency.WEEKLY);
-      break;
-
-      case 'bi':
-      this.budgetService.setBudgetFrequency(BudgetFrequency.BIWEEKLY);
-      break;
-
-      case 'm':
-      this.budgetService.setBudgetFrequency(BudgetFrequency.MONTHLY);
-      break;
-
-      default:
-      break;
     }
+
+    let strippedDollarSign = this.userForm.value.budgetAmount
+      .toString()
+      .replace('$', '');
+    let strippedValue = strippedDollarSign.replace(',', '');
+    this.budgetService.setNewStartingBudget(+strippedValue);
+    this.budgetService.setBudgetFrequency(+this.userForm.value.budgetLength);
+
     this.navCtrl.setRoot(OverviewPage);
   }
+
 }

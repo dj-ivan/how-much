@@ -16,29 +16,28 @@ export class AddExpenseModal {
   public id = '';
   public categories: Category[] = this.budgetService.getCategories();
   public selectedCategory: Category = this.categories[0];
-  public selectedDate ;
+  public selectedDate;
   public userForm: FormGroup;
   public submitAttempt = false;
 
   constructor(
     private viewCtrl: ViewController,
     private budgetService: BudgetService,
-    private params: NavParams, private formBuilder: FormBuilder
+    private params: NavParams,
+    private formBuilder: FormBuilder
   ) {
     let editExpense = this.params.get('expense');
     this.name = editExpense && editExpense.name ? editExpense.name : '';
     this.amount = editExpense && editExpense.amount ? editExpense.amount : '';
     this.id = editExpense && editExpense.id ? editExpense.id : '';
     this.selectedCategory =
-      editExpense && editExpense.category
-        ? editExpense.category
-        : null;
+      editExpense && editExpense.category ? editExpense.category : null;
     // this.selectedDate =
     //   editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
     this.userForm = this.formBuilder.group({
       expenseName: ['', Validators.required],
       expenseCategory: ['', Validators.required],
-      expenseAmount: ['', Validators.required],
+      expenseAmount: ['', Validators.required]
     });
   }
 
@@ -51,8 +50,11 @@ export class AddExpenseModal {
 
     if (!this.userForm.valid) {
       return;
-  }
-  let strippedValue = this.amount.toString().replace('$','');
+    }
+    let strippedDollarSign = this.userForm.value.expenseAmount
+      .toString()
+      .replace('$', '');
+    let strippedValue = strippedDollarSign.replace(',', '');
     let expense = {
       id: this.id ? this.id : '',
       amount: +strippedValue,

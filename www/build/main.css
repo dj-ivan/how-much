@@ -25794,7 +25794,7 @@ ion-spinner * {
 }
 
 .get-started-container .budget-length-title {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-size: 4vw;
   padding-top: 2rem;
   text-align: center;
@@ -25810,10 +25810,32 @@ ion-spinner * {
   color: #f7f7f7;
 }
 
-.get-started-container .budget-amount-title {
-  margin-bottom: 2rem;
+.get-started-container .custom-days-container {
+  padding-top: 3rem;
+}
+
+.get-started-container .custom-days-container .custom-days-title {
+  margin-bottom: 1rem;
   font-size: 4vw;
-  padding-top: 5rem;
+  text-align: center;
+}
+
+.get-started-container .custom-days-container .custom-days-input {
+  color: #f7f7f7;
+  border: 1px solid #193522;
+  width: 30%;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+.get-started-container .custom-days-container .custom-days-input .text-input {
+  margin-left: 1rem;
+}
+
+.get-started-container .budget-amount-title {
+  margin-bottom: 1rem;
+  font-size: 4vw;
+  padding-top: 3rem;
   text-align: center;
 }
 
@@ -25825,9 +25847,13 @@ ion-spinner * {
   border-radius: 6px;
 }
 
+.get-started-container .budget-amount-input .text-input {
+  margin-left: 1rem;
+}
+
 .get-started-container .cta-button {
   display: block;
-  margin: 17rem auto;
+  margin: 7rem auto;
   padding: 0 27vw;
   font-size: 4vw;
 }
@@ -25869,6 +25895,12 @@ ion-spinner * {
   .get-started-container .frequency-container .segment-button {
     height: 4rem;
     font-size: 2.5rem;
+  }
+  .get-started-container .custom-days-container .custom-days-title {
+    font-size: 3rem;
+  }
+  .get-started-container .custom-days-container .custom-days-input {
+    font-size: 2rem;
   }
   .get-started-container .budget-amount-title {
     margin-bottom: 2rem;
@@ -25962,6 +25994,42 @@ page-overview .expenses-header {
   text-align: left;
 }
 
+page-overview .expenses-list-header {
+  height: 2.4rem;
+  min-height: 0;
+  border-bottom: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+page-overview .expense-item {
+  padding-left: 0;
+  border-bottom: 0.55px solid #c8c7cc;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+page-overview .expense-item .expense-amount {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: inline-block;
+  width: 25%;
+  font-weight: 700;
+}
+
+page-overview .expense-item .expense-name {
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  display: inline-block;
+  width: 75%;
+}
+
 page-overview #income {
   background-color: #338a3e;
 }
@@ -25999,11 +26067,11 @@ page-overview .status-badge .badge-body {
 }
 
 page-overview .expenses-container {
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
 
 page-overview .add-expense-cta {
-  padding-top: 3rem;
+  padding: 1rem 0;
   margin: auto;
 }
 
