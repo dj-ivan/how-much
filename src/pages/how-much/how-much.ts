@@ -40,6 +40,7 @@ export class HowMuch {
   }
 
     let strippedValue = this.userForm.value.budgetAmount.toString().replace('$','');
+    strippedValue = strippedValue.replace(',','');
     this.budgetService.setNewStartingBudget(+strippedValue);
     switch (this.userForm.value.budgetLength) {
       case 'w':

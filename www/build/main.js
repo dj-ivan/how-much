@@ -334,6 +334,7 @@ var AddExpenseModal = /** @class */ (function () {
             return;
         }
         var strippedValue = this.amount.toString().replace('$', '');
+        strippedValue = strippedValue.replace(',', '');
         var expense = {
             id: this.id ? this.id : '',
             amount: +strippedValue,
@@ -357,11 +358,10 @@ var AddExpenseModal = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'add-expense',template:/*ion-inline-start:"C:\Users\Aaron Mylius\Documents\GitHub\how-much\src\pages\modals\add-expense-modal\add-expense-modal.html"*/'<ion-header>\n\n  <ion-toolbar>\n\n    <ion-title>\n\n      Add Expense\n\n    </ion-title>\n\n    <ion-buttons start>\n\n      <button ion-button (click)="dismiss()">\n\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-list>\n\n      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">\n\n        <ion-item [class.invalid]="!userForm.controls.expenseName.valid && (userForm.controls.expenseName.dirty || submitAttempt)">\n\n          <ion-label floating>Name</ion-label>\n\n          <ion-input formControlName="expenseName" type="text" [(ngModel)]="name"></ion-input>\n\n        </ion-item>\n\n        <div class="error" *ngIf="!userForm.controls.expenseName.valid && (userForm.controls.expenseName.dirty || submitAttempt)">\n\n            Name is required.\n\n          </div>\n\n        <ion-item [class.invalid]="!userForm.controls.expenseAmount.valid && (userForm.controls.expenseAmount.dirty || submitAttempt)" >\n\n          <ion-label floating>Amount</ion-label>\n\n          <ion-input formControlName="expenseAmount" type="tel" [(ngModel)]="amount" [brmasker]="{len:11, money: true, type: \'num\', decimalCaracter: \'.\', thousand: \',\'}"></ion-input>\n\n        </ion-item>\n\n        <div class="error" *ngIf="!userForm.controls.expenseAmount.valid && (userForm.controls.expenseAmount.dirty || submitAttempt)">\n\n            Amount is required.\n\n          </div>\n\n          <ion-item [class.invalid]="!userForm.controls.expenseCategory.valid && (userForm.controls.expenseCategory.dirty || submitAttempt)">\n\n              <ion-label>Category</ion-label>\n\n              <ion-select formControlName="expenseCategory" [(ngModel)]="selectedCategory" [placeholder]="selectedCategory !== null ? selectedCategory.name : \'\'">\n\n                <div *ngFor="let category of categories">\n\n                  <ion-option [value]="category">{{category.name}}</ion-option>\n\n                </div>\n\n              </ion-select>\n\n            </ion-item>\n\n            <div class="error" *ngIf="!userForm.controls.expenseCategory.valid && (userForm.controls.expenseCategory.dirty || submitAttempt)">\n\n                Category is required.\n\n              </div>\n\n        <!-- <ion-item>\n\n          <ion-label>Date</ion-label>\n\n          <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>\n\n        </ion-item> -->\n\n      </form>\n\n  </ion-list>\n\n  <div>\n\n    <button *ngIf="id !== \'\'" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>\n\n    <button class="add-expense" ion-button (click)="addExpense()">Add Expense</button>\n\n  </div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Aaron Mylius\Documents\GitHub\how-much\src\pages\modals\add-expense-modal\add-expense-modal.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
     ], AddExpenseModal);
     return AddExpenseModal;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=add-expense-modal.js.map
@@ -1519,6 +1519,7 @@ var HowMuch = /** @class */ (function () {
             return;
         }
         var strippedValue = this.userForm.value.budgetAmount.toString().replace('$', '');
+        strippedValue = strippedValue.replace(',', '');
         this.budgetService.setNewStartingBudget(+strippedValue);
         switch (this.userForm.value.budgetLength) {
             case 'w':
