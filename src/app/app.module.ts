@@ -19,6 +19,8 @@ import { BudgetService } from '../services/budget-service';
 import { BrMaskerIonic3 } from '../directives/input-mask';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AboutUsPage } from '../pages/about-us/about-us';
+import { AnalyticsPage } from '../pages/analytics/analytics';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { AboutUsPage } from '../pages/about-us/about-us';
     AddExpenseModal,
     BrMaskerIonic3,
     TabsPage,
-    AboutUsPage
+    AboutUsPage,
+    AnalyticsPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { AboutUsPage } from '../pages/about-us/about-us';
     OverviewPage,
     AddExpenseModal,
     TabsPage,
-    AboutUsPage
+    AboutUsPage,
+    AnalyticsPage
   ],
   providers: [
     StatusBar,
