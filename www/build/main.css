@@ -25678,6 +25678,14 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+about-us {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  color: #7f7e7e;
+  background-color: #ececec;
+}
+
 .header-logo {
   padding-top: 1rem;
   z-index: 10;

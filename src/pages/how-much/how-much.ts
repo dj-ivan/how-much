@@ -4,7 +4,7 @@ import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
 import { BudgetFrequency } from '../../models/budget-model';
-import { OverviewPage } from '../overview/overview';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-home',
@@ -40,6 +40,7 @@ export class HowMuch {
   }
 
     let strippedValue = this.userForm.value.budgetAmount.toString().replace('$','');
+    strippedValue = strippedValue.replace(/,/g,'');
     this.budgetService.setNewStartingBudget(+strippedValue);
     switch (this.userForm.value.budgetLength) {
       case 'w':
@@ -57,6 +58,6 @@ export class HowMuch {
       default:
       break;
     }
-    this.navCtrl.setRoot(OverviewPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 }

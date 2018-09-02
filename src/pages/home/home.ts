@@ -3,9 +3,9 @@ import { NavController } from 'ionic-angular';
 import { HowMuch } from '../how-much/how-much';
 import { CacheService } from '../../services/cache-service';
 import { Events } from 'ionic-angular';
-import { OverviewPage } from '../overview/overview';
 import { BudgetService } from '../../services/budget-service';
 import { Slides } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
 
 
 @Component({
@@ -43,7 +43,7 @@ export class HomePage {
 
   public navigateToOverview() {
     // navigate to the new page if it is not the current page
-    this.navCtrl.setRoot(OverviewPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
 }

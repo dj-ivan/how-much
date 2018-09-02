@@ -53,6 +53,7 @@ export class AddExpenseModal {
       return;
   }
   let strippedValue = this.amount.toString().replace('$','');
+  strippedValue = strippedValue.replace(/,/g,'');
     let expense = {
       id: this.id ? this.id : '',
       amount: +strippedValue,
