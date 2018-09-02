@@ -233,6 +233,7 @@ var HowMuch = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__overview_overview__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__about_us_about_us__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__analytics_analytics__ = __webpack_require__(454);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -246,19 +247,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var TabsPage = /** @class */ (function () {
     function TabsPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.tab1Root = __WEBPACK_IMPORTED_MODULE_1__overview_overview__["a" /* OverviewPage */];
-        this.tab2Root = __WEBPACK_IMPORTED_MODULE_3__about_us_about_us__["a" /* AboutUsPage */];
+        this.tab2Root = __WEBPACK_IMPORTED_MODULE_4__analytics_analytics__["a" /* AnalyticsPage */];
+        this.tab3Root = __WEBPACK_IMPORTED_MODULE_3__about_us_about_us__["a" /* AboutUsPage */];
     }
     TabsPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Git\how-much\src\pages\tabs\tabs.html"*/'<ion-tabs selectedIndex="0">\n\n        <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n        <ion-tab [root]="tab2Root" tabTitle="About Us" tabIcon="information-circle"></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"C:\Git\how-much\src\pages\tabs\tabs.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Git\how-much\src\pages\tabs\tabs.html"*/'<ion-tabs selectedIndex="0">\n\n        <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n        <ion-tab [root]="tab2Root" tabTitle="Analytics" tabIcon="pie"></ion-tab>\n\n        <ion-tab [root]="tab3Root" tabTitle="About Us" tabIcon="information-circle"></ion-tab>\n\n</ion-tabs>'/*ion-inline-end:"C:\Git\how-much\src\pages\tabs\tabs.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object])
     ], TabsPage);
     return TabsPage;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=tabs.js.map
@@ -751,12 +755,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_input_mask__ = __webpack_require__(453);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_tabs_tabs__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_about_us_about_us__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_analytics_analytics__ = __webpack_require__(454);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -790,7 +796,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_0__pages_modals_add_expense_modal_add_expense_modal__["a" /* AddExpenseModal */],
                 __WEBPACK_IMPORTED_MODULE_16__directives_input_mask__["a" /* BrMaskerIonic3 */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_18__pages_about_us_about_us__["a" /* AboutUsPage */]
+                __WEBPACK_IMPORTED_MODULE_18__pages_about_us_about_us__["a" /* AboutUsPage */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_analytics_analytics__["a" /* AnalyticsPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
@@ -809,7 +816,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_14__pages_overview_overview__["a" /* OverviewPage */],
                 __WEBPACK_IMPORTED_MODULE_0__pages_modals_add_expense_modal_add_expense_modal__["a" /* AddExpenseModal */],
                 __WEBPACK_IMPORTED_MODULE_17__pages_tabs_tabs__["a" /* TabsPage */],
-                __WEBPACK_IMPORTED_MODULE_18__pages_about_us_about_us__["a" /* AboutUsPage */]
+                __WEBPACK_IMPORTED_MODULE_18__pages_about_us_about_us__["a" /* AboutUsPage */],
+                __WEBPACK_IMPORTED_MODULE_19__pages_analytics_analytics__["a" /* AnalyticsPage */]
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
@@ -1474,6 +1482,67 @@ var BrMaskerIonic3 = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=input-mask.js.map
+
+/***/ }),
+
+/***/ 454:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnalyticsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_budget_service__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_date_fns__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_date_fns__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AnalyticsPage = /** @class */ (function () {
+    function AnalyticsPage(_budgetService) {
+        this._budgetService = _budgetService;
+        this.expenses = [];
+        this.categories = this._budgetService.getCategories();
+        this.getSortedExpenses();
+    }
+    AnalyticsPage.prototype.getSortedExpenses = function () {
+        var sortedExpenses = this._budgetService.getBudget().expenses.sort(function (x, y) {
+            return Object(__WEBPACK_IMPORTED_MODULE_2_date_fns__["compareDesc"])(x.date, y.date);
+        });
+        sortedExpenses.forEach(function (e) { return e.date = new Date(e.date); });
+        this.expenses = sortedExpenses;
+    };
+    AnalyticsPage.prototype.categorizeExpenses = function () {
+        var _this = this;
+        var categorizedExpenses;
+        this.categories.forEach(function (e) {
+            categorizedExpenses = [];
+            _this.expenses.forEach(function (expense) {
+                if (expense.category.categoryId == e.categoryId) {
+                    categorizedExpenses.push(expense);
+                }
+            });
+        });
+    };
+    AnalyticsPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-analytics',template:/*ion-inline-start:"C:\Git\how-much\src\pages\analytics\analytics.html"*/'WooHoo Analytics!!'/*ion-inline-end:"C:\Git\how-much\src\pages\analytics\analytics.html"*/
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_budget_service__["a" /* BudgetService */]) === "function" && _a || Object])
+    ], AnalyticsPage);
+    return AnalyticsPage;
+    var _a;
+}());
+
+//# sourceMappingURL=analytics.js.map
 
 /***/ }),
 
