@@ -6,7 +6,7 @@
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
         <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        <ion-icon name="md-close" showWhen="android"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -24,7 +24,7 @@
       </div>
       <ion-item [class.invalid]="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">
         <ion-label stacked>Amount</ion-label>
-        <ion-input formControlName="expenseAmount" type="tel" placeholder="$0.00" [value]="expenseAmount" [brmasker]="{len:11, money: true, decimalCaracter: '.', thousand: ','}"></ion-input>
+        <ion-input formControlName="expenseAmount" type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, decimalCaracter: '.', thousand: ','}"></ion-input>
       </ion-item>
       <div class="error" *ngIf="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">
         Amount is required.

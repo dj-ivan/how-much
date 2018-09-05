@@ -182,12 +182,14 @@ var AddExpenseModal = /** @class */ (function () {
     };
     AddExpenseModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'add-expense',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      {{id !== \'\' ? \'Edit\' : \'Add\'}} Expense\n    </ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <form [formGroup]="expenseForm" (ngSubmit)="submitForm()" class="form-container">\n      <ion-item [class.invalid]="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">\n        <ion-label stacked>Name</ion-label>\n        <ion-input autocomplete="true" formControlName="expenseName" type="text"></ion-input>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">\n        Name is required.\n      </div>\n      <ion-item [class.invalid]="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">\n        <ion-label stacked>Amount</ion-label>\n        <ion-input formControlName="expenseAmount" type="tel" placeholder="$0.00" [value]="expenseAmount" [brmasker]="{len:11, money: true, decimalCaracter: \'.\', thousand: \',\'}"></ion-input>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">\n        Amount is required.\n      </div>\n      <ion-item [class.invalid]="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">\n        <ion-label>Category</ion-label>\n        <ion-select formControlName="expenseCategory">\n          <ion-option *ngFor="let category of categories" [value]="category.categoryId">{{category.name}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">\n        Category is required.\n      </div>\n      <!-- <ion-item>\n          <ion-label>Date</ion-label>\n          <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>\n        </ion-item> -->\n    </form>\n  </ion-list>\n  <div>\n    <button *ngIf="id !== \'\'" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>\n    <button class="add-expense" ion-button (click)="addExpense()">{{id !== \'\' ? \'Edit\' : \'Add\'}} Expense</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/
+            selector: 'add-expense',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      {{id !== \'\' ? \'Edit\' : \'Add\'}} Expense\n    </ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <ion-icon name="md-close" showWhen="android"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <form [formGroup]="expenseForm" (ngSubmit)="submitForm()" class="form-container">\n      <ion-item [class.invalid]="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">\n        <ion-label stacked>Name</ion-label>\n        <ion-input autocomplete="true" formControlName="expenseName" type="text"></ion-input>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">\n        Name is required.\n      </div>\n      <ion-item [class.invalid]="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">\n        <ion-label stacked>Amount</ion-label>\n        <ion-input formControlName="expenseAmount" type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, decimalCaracter: \'.\', thousand: \',\'}"></ion-input>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">\n        Amount is required.\n      </div>\n      <ion-item [class.invalid]="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">\n        <ion-label>Category</ion-label>\n        <ion-select formControlName="expenseCategory">\n          <ion-option *ngFor="let category of categories" [value]="category.categoryId">{{category.name}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">\n        Category is required.\n      </div>\n      <!-- <ion-item>\n          <ion-label>Date</ion-label>\n          <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>\n        </ion-item> -->\n    </form>\n  </ion-list>\n  <div>\n    <button *ngIf="id !== \'\'" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>\n    <button class="add-expense" ion-button (click)="addExpense()">{{id !== \'\' ? \'Edit\' : \'Add\'}} Expense</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */],
+            __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]])
     ], AddExpenseModal);
     return AddExpenseModal;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=add-expense-modal.js.map
@@ -1031,6 +1033,11 @@ var BrMaskerIonic3 = /** @class */ (function () {
         this.writeValue(value);
         event.value = value;
     };
+    BrMaskerIonic3.prototype.ionChange = function (event) {
+        var value = this.returnValue(event.value);
+        this.writeValue(value);
+        event.value = value;
+    };
     BrMaskerIonic3.prototype.ngOnInit = function () {
         if (!this.brmasker.type) {
             this.brmasker.type = 'all';
@@ -1260,6 +1267,12 @@ var BrMaskerIonic3 = /** @class */ (function () {
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], BrMaskerIonic3.prototype, "inputFocus", null);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["y" /* HostListener */])('ionFionChangeocus', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], BrMaskerIonic3.prototype, "ionChange", null);
     BrMaskerIonic3 = BrMaskerIonic3_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["s" /* Directive */])({
             selector: '[brmasker]',
@@ -1270,10 +1283,10 @@ var BrMaskerIonic3 = /** @class */ (function () {
                 }]
         }),
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* ElementRef */]) === "function" && _b || Object])
     ], BrMaskerIonic3);
     return BrMaskerIonic3;
-    var BrMaskerIonic3_1;
+    var BrMaskerIonic3_1, _a, _b;
 }());
 
 //# sourceMappingURL=input-mask.js.map
