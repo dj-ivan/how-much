@@ -51,6 +51,10 @@ export class BudgetService {
       {
         name: 'Services',
         categoryId: 10
+      } as Category,
+      {
+        name: 'Other',
+        categoryId: 11
       } as Category
     ];
   }

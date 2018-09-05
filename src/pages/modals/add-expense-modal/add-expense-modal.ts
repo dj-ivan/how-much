@@ -30,6 +30,7 @@ export class AddExpenseModal {
       expenseCategory: [0, Validators.required],
       expenseAmount: ['', Validators.required]
     });
+
     this.selectedCategory =
       editExpense && editExpense.category ? editExpense.category : null;
     this.id = editExpense && editExpense.id ? editExpense.id : '';
@@ -41,11 +42,17 @@ export class AddExpenseModal {
           ? editExpense.amount.toFixed(2).toString()
           : '',
       expenseCategory:
-        editExpense && editExpense.category ? +editExpense.category.categoryId : null
+        editExpense && editExpense.category
+          ? +editExpense.category.categoryId
+          : null
     });
 
     // this.selectedDate =
     //   editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
+
+    this.categories = this.categories.sort(function(a, b) {
+      return a.name.localeCompare(b.name);
+    });
   }
 
   ionViewDidLoad() {
@@ -61,17 +68,18 @@ export class AddExpenseModal {
     let strippedDollarSign = this.expenseForm.value.expenseAmount
       .toString()
       .replace('$', '');
-    let strippedValue = strippedDollarSign.replace(/,/g,'');
+    let strippedValue = strippedDollarSign.replace(/,/g, '');
 
-    let selectedCategories = this.categories.filter(x => x.categoryId === this.expenseForm.value.expenseCategory);
-
+    let selectedCategories = this.categories.filter(
+      x => x.categoryId === this.expenseForm.value.expenseCategory
+    );
 
     let expense = {
       id: this.id ? this.id : '',
       amount: +strippedValue,
       date: new Date(),
       name: this.expenseForm.value.expenseName,
-      category: selectedCategories.length > 0 ? selectedCategories[0] : null,
+      category: selectedCategories.length > 0 ? selectedCategories[0] : null
     } as Expense;
 
     this.budgetService.addExpense(expense);

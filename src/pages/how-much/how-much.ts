@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
-import { BudgetFrequency } from '../../models/budget-model';
-import { TabsPage } from '../tabs/tabs';
 import { OverviewPage } from '../overview/overview';
 
 @Component({
@@ -22,21 +20,12 @@ export class HowMuch {
   constructor(
     public navCtrl: NavController,
     private formBuilder: FormBuilder,
-    private budgetService: BudgetService,
-    private alertCtrl: AlertController
+    private budgetService: BudgetService
   ) {
-    this.textBoxVisible = false;
-    setTimeout(() => {
-      this.showTextBox();
-    }, 2000);
     this.userForm = this.formBuilder.group({
       budgetAmount: ['', Validators.required],
       budgetLength: ['', Validators.required]
     });
-  }
-
-  public showTextBox() {
-    this.textBoxVisible = true;
   }
 
   public submitForm() {

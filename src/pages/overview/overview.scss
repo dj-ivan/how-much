@@ -55,12 +55,15 @@ page-overview {
     .expense-item {
         padding-left: 0;
         border-bottom: 0.55px solid #c8c7cc;
-        display: flex;
+
+        .label {
+            display: flex;
+            flex-flow: nowrap;
+            justify-content: space-around;
+        }
 
         .expense-amount {
             flex: 1;
-            display: inline-block;
-            width: 26%;
             font-weight: 700;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -68,9 +71,7 @@ page-overview {
         }
 
         .expense-name {
-            flex: 2;
-            display: inline-block;
-            width: 74%;
+            flex: 3;
         }
     }
 
