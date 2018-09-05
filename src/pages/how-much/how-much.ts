@@ -5,6 +5,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
 import { BudgetFrequency } from '../../models/budget-model';
 import { TabsPage } from '../tabs/tabs';
+import { OverviewPage } from '../overview/overview';
 
 @Component({
   selector: 'page-home',
