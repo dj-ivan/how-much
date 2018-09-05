@@ -19,7 +19,7 @@
         <!-- Custom Length -->
         <div class="custom-days-container" *ngIf="showCustomDaysInput">
           <div class="custom-days-title">Enter Length In Days</div>
-          <ion-input class="custom-days-input" type="tel" placeholder="" clearOnEdit="true" value="" formControlName="budgetLength"></ion-input>
+          <ion-input class="custom-days-input" type="tel" min="1" max="3" clearOnEdit formControlName="budgetLength"></ion-input>
         </div>
         <!-- Amount -->
         <div class="budget-amount-title">How much money would you like to spend?</div>
