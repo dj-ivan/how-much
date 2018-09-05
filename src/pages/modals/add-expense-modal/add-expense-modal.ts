@@ -61,8 +61,10 @@ export class AddExpenseModal {
     let strippedDollarSign = this.expenseForm.value.expenseAmount
       .toString()
       .replace('$', '');
-    let strippedValue = strippedDollarSign.replace(',', '');
+    let strippedValue = strippedDollarSign.replace(/,/g,'');
+
     let selectedCategories = this.categories.filter(x => x.categoryId === this.expenseForm.value.expenseCategory);
+
 
     let expense = {
       id: this.id ? this.id : '',
