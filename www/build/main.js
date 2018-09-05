@@ -66,10 +66,12 @@ var HowMuch = /** @class */ (function () {
             animations: [__WEBPACK_IMPORTED_MODULE_2__app_animations_index__["a" /* fadeInAnimation */]],template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/how-much/how-much.html"*/'<ion-content class="get-started-container">\n  <img class="header-img" src="./../../assets/imgs/cutback-name-white.png" padding>\n  <h1 class="create-budget">Create a budget</h1>\n  <div class="budget-inputs-outer-container">\n    <div class="budget-inputs-inner-container">\n      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">\n        <div class="budget-length-title">How long would you like to budget your money?</div>\n        <ion-segment class="frequency-container" formControlName="budgetLength">\n          <ion-segment-button class="segment-button" [value]="7" (click)="showCustomDaysInput = false">\n            7 Days\n          </ion-segment-button>\n          <ion-segment-button [value]="14" (click)="showCustomDaysInput = false">\n            14 Days\n          </ion-segment-button>\n          <ion-segment-button [value]="1" (click)="showCustomDaysInput = true">\n            Other\n          </ion-segment-button>\n        </ion-segment>\n        <!-- Custom Length -->\n        <div class="custom-days-container" *ngIf="showCustomDaysInput">\n          <div class="custom-days-title">Enter Length In Days</div>\n          <ion-input class="custom-days-input" type="tel" placeholder="" clearOnEdit="true" value="" formControlName="budgetLength"></ion-input>\n        </div>\n        <!-- Amount -->\n        <div class="budget-amount-title">How much money would you like to spend?</div>\n        <ion-input class="budget-amount-input" [class.invalid]="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)"\n          type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, type: \'num\', decimalCaracter: \'.\', thousand: \',\'}"\n          formControlName="budgetAmount"></ion-input>\n        <div class="error" *ngIf="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)">\n          Amount is required.\n        </div>\n      </form>\n    </div>\n  </div>\n\n  <button ion-button *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">\n    Create Budget\n  </button>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/how-much/how-much.html"*/,
             host: { '[@fadeInAnimation]': '' }
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_budget_service__["a" /* BudgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */],
+            __WEBPACK_IMPORTED_MODULE_4__services_budget_service__["a" /* BudgetService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], HowMuch);
     return HowMuch;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=how-much.js.map
@@ -122,44 +124,49 @@ var AddExpenseModal = /** @class */ (function () {
         this.budgetService = budgetService;
         this.params = params;
         this.formBuilder = formBuilder;
-        this.name = '';
-        this.amount = '';
         this.id = '';
         this.categories = this.budgetService.getCategories();
-        this.selectedCategory = this.categories[0];
+        this.selectedCategory = null;
         this.submitAttempt = false;
         var editExpense = this.params.get('expense');
-        this.name = editExpense && editExpense.name ? editExpense.name : '';
-        this.amount = editExpense && editExpense.amount ? editExpense.amount : '';
-        this.id = editExpense && editExpense.id ? editExpense.id : '';
-        this.selectedCategory =
-            editExpense && editExpense.category ? editExpense.category : null;
-        // this.selectedDate =
-        //   editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
-        this.userForm = this.formBuilder.group({
+        this.expenseForm = this.formBuilder.group({
             expenseName: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
-            expenseCategory: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+            expenseCategory: [0, __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
             expenseAmount: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required]
         });
+        this.selectedCategory =
+            editExpense && editExpense.category ? editExpense.category : null;
+        this.id = editExpense && editExpense.id ? editExpense.id : '';
+        this.expenseForm.setValue({
+            expenseName: editExpense && editExpense.name ? editExpense.name : '',
+            expenseAmount: editExpense && editExpense.amount
+                ? editExpense.amount.toFixed(2).toString()
+                : '',
+            expenseCategory: editExpense && editExpense.category ? +editExpense.category.categoryId : null
+        });
+        // this.selectedDate =
+        //   editExpense && editExpense.date ? editExpense.date : parse(new Date().toISOString()).toISOString();
     }
     AddExpenseModal.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad Expense Modal');
     };
     AddExpenseModal.prototype.addExpense = function () {
+        var _this = this;
         this.submitAttempt = true;
-        if (!this.userForm.valid) {
+        if (!this.expenseForm.valid) {
             return;
         }
-        var strippedDollarSign = this.userForm.value.expenseAmount
+        var strippedDollarSign = this.expenseForm.value.expenseAmount
             .toString()
             .replace('$', '');
         var strippedValue = strippedDollarSign.replace(',', '');
+        var selectedCategories = this.categories.filter(function (x) { return x.categoryId === _this.expenseForm.value.expenseCategory; });
         var expense = {
             id: this.id ? this.id : '',
             amount: +strippedValue,
             date: new Date(),
-            name: this.name,
-            category: this.selectedCategory
+            name: this.expenseForm.value.expenseName,
+            category: selectedCategories.length > 0 ? selectedCategories[0] : null,
         };
         this.budgetService.addExpense(expense);
         console.log('Expense sent to Budget Service!');
@@ -175,14 +182,12 @@ var AddExpenseModal = /** @class */ (function () {
     };
     AddExpenseModal = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'add-expense',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Add Expense\n    </ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">\n        <ion-item [class.invalid]="!userForm.controls.expenseName.valid && (userForm.controls.expenseName.dirty || submitAttempt)">\n          <ion-label floating>Name</ion-label>\n          <ion-input formControlName="expenseName" type="text" [(ngModel)]="name"></ion-input>\n        </ion-item>\n        <div class="error" *ngIf="!userForm.controls.expenseName.valid && (userForm.controls.expenseName.dirty || submitAttempt)">\n            Name is required.\n          </div>\n        <ion-item [class.invalid]="!userForm.controls.expenseAmount.valid && (userForm.controls.expenseAmount.dirty || submitAttempt)" >\n          <ion-label floating>Amount</ion-label>\n          <ion-input formControlName="expenseAmount" type="tel" [(ngModel)]="amount" [brmasker]="{len:11, money: true, type: \'num\', decimalCaracter: \'.\', thousand: \',\'}"></ion-input>\n        </ion-item>\n        <div class="error" *ngIf="!userForm.controls.expenseAmount.valid && (userForm.controls.expenseAmount.dirty || submitAttempt)">\n            Amount is required.\n          </div>\n          <ion-item [class.invalid]="!userForm.controls.expenseCategory.valid && (userForm.controls.expenseCategory.dirty || submitAttempt)">\n              <ion-label>Category</ion-label>\n              <ion-select formControlName="expenseCategory" [(ngModel)]="selectedCategory" [placeholder]="selectedCategory !== null ? selectedCategory.name : \'\'">\n                <div *ngFor="let category of categories">\n                  <ion-option [value]="category">{{category.name}}</ion-option>\n                </div>\n              </ion-select>\n            </ion-item>\n            <div class="error" *ngIf="!userForm.controls.expenseCategory.valid && (userForm.controls.expenseCategory.dirty || submitAttempt)">\n                Category is required.\n              </div>\n        <!-- <ion-item>\n          <ion-label>Date</ion-label>\n          <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>\n        </ion-item> -->\n      </form>\n  </ion-list>\n  <div>\n    <button *ngIf="id !== \'\'" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>\n    <button class="add-expense" ion-button (click)="addExpense()">Add Expense</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/
+            selector: 'add-expense',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/'<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      {{id !== \'\' ? \'Edit\' : \'Add\'}} Expense\n    </ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <form [formGroup]="expenseForm" (ngSubmit)="submitForm()" class="form-container">\n      <ion-item [class.invalid]="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">\n        <ion-label stacked>Name</ion-label>\n        <ion-input autocomplete="true" formControlName="expenseName" type="text"></ion-input>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">\n        Name is required.\n      </div>\n      <ion-item [class.invalid]="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">\n        <ion-label stacked>Amount</ion-label>\n        <ion-input formControlName="expenseAmount" type="tel" placeholder="$0.00" [value]="expenseAmount" [brmasker]="{len:11, money: true, decimalCaracter: \'.\', thousand: \',\'}"></ion-input>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">\n        Amount is required.\n      </div>\n      <ion-item [class.invalid]="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">\n        <ion-label>Category</ion-label>\n        <ion-select formControlName="expenseCategory">\n          <ion-option *ngFor="let category of categories" [value]="category.categoryId">{{category.name}}</ion-option>\n        </ion-select>\n      </ion-item>\n      <div class="error" *ngIf="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">\n        Category is required.\n      </div>\n      <!-- <ion-item>\n          <ion-label>Date</ion-label>\n          <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>\n        </ion-item> -->\n    </form>\n  </ion-list>\n  <div>\n    <button *ngIf="id !== \'\'" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>\n    <button class="add-expense" ion-button (click)="addExpense()">{{id !== \'\' ? \'Edit\' : \'Add\'}} Expense</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/modals/add-expense-modal/add-expense-modal.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */],
-            __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ViewController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_budget_service__["a" /* BudgetService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
     ], AddExpenseModal);
     return AddExpenseModal;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=add-expense-modal.js.map
@@ -882,10 +887,9 @@ var BudgetService = /** @class */ (function () {
     };
     BudgetService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__cache_service__["a" /* CacheService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__cache_service__["a" /* CacheService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* Events */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__cache_service__["a" /* CacheService */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* Events */]])
     ], BudgetService);
     return BudgetService;
-    var _a, _b;
 }());
 
 //# sourceMappingURL=budget-service.js.map
@@ -1446,7 +1450,7 @@ var OverviewPage = /** @class */ (function () {
     };
     OverviewPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-overview',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Overview</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showExpenseModal()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-card class="budget" [ngClass]="budgetStatus">\n    <ion-card-header class="card-header">\n      LEFT TO SPEND\n    </ion-card-header>\n    <ion-card-content>\n      <div>\n        <div class="amount-remaining">{{remainingAmount | currency}} </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-4>\n        <div id="income" class="status-badge">\n          <div class="badge-header">{{daysLeft}}</div>\n          <div class="badge-body">DAYS LEFT</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="budget" class="status-badge">\n          <div class="badge-header">{{startingBudget | currency}}</div>\n          <div class="badge-body">BUDGET</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="spent" class="status-badge">\n          <div class="badge-header">{{totalSpent | currency}}</div>\n          <div class="badge-body">SPENT</div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid class="expenses-container">\n    <div class="expenses-header">Expenses</div>\n    <ion-row>\n      <ion-item-group class="add-expense-cta">\n        <button class="add-expense-button" ion-button (click)="showExpenseModal()">Add Expense</button>\n      </ion-item-group>\n    </ion-row>\n    <ion-row *ngIf="expenses.length > 0">\n      <ion-col col-12>\n        <div class="expenses">\n          <ion-item-group>\n            <div *ngFor="let expense of expenses; let idx = index;">\n              <ion-list-header class="expenses-list-header" color="light" *ngIf="idx === 0 || firstDateIsOlder(expenses[idx].date, expenses[idx-1].date)">{{expense.date\n                | date:\'EEEE, MMMM d\'}}</ion-list-header>\n              <ion-item class="expense-item" (click)="showExpenseModal(expense)">\n                <span class="expense-amount">{{expense.amount | currency}}</span>\n                <span class="expense-name">{{expense.name}}</span>\n                <button ion-button outline item-end>Edit</button>\n              </ion-item>\n            </div>\n          </ion-item-group>\n        </div>\n      </ion-col>\n    </ion-row>\n    <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/
+            selector: 'page-overview',template:/*ion-inline-start:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Overview</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="showExpenseModal()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-card class="budget" [ngClass]="budgetStatus">\n    <ion-card-header class="card-header">\n      LEFT TO SPEND\n    </ion-card-header>\n    <ion-card-content>\n      <div>\n        <div class="amount-remaining">{{remainingAmount | currency}} </div>\n      </div>\n    </ion-card-content>\n  </ion-card>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-4>\n        <div id="income" class="status-badge">\n          <div class="badge-header">{{daysLeft}}</div>\n          <div class="badge-body">DAYS LEFT</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="budget" class="status-badge">\n          <div class="badge-header">{{startingBudget | currency}}</div>\n          <div class="badge-body">BUDGET</div>\n        </div>\n      </ion-col>\n      <ion-col col-4>\n        <div id="spent" class="status-badge">\n          <div class="badge-header">{{totalSpent | currency}}</div>\n          <div class="badge-body">SPENT</div>\n        </div>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n  <ion-grid class="expenses-container">\n    <div class="expenses-header">Expenses</div>\n    <ion-row>\n      <ion-item-group class="add-expense-cta">\n        <button class="add-expense-button" ion-button (click)="showExpenseModal()">Add Expense</button>\n      </ion-item-group>\n    </ion-row>\n    <ion-row *ngIf="expenses.length > 0">\n      <ion-col col-12>\n        <div class="expenses">\n          <ion-item-group>\n            <div *ngFor="let expense of expenses; let idx = index;">\n              <ion-list-header class="expenses-list-header" color="light" *ngIf="idx === 0 || firstDateIsOlder(expenses[idx].date, expenses[idx-1].date)">{{expense.date\n                | date:\'EEEE, MMMM d\'}}</ion-list-header>\n              <ion-item class="expense-item" (click)="showExpenseModal(expense)">\n                <span class="expense-amount">{{expense.amount | currency}}</span>\n                <span class="expense-name">{{expense.name}}</span>\n                <button ion-button outline item-end>Edit</button>\n              </ion-item>\n            </div>\n          </ion-item-group>\n        </div>\n      </ion-col>\n    </ion-row>\n    <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/ivanmendoza/Documents/Repos/how-much/src/pages/overview/overview.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */],

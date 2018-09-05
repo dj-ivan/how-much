@@ -25936,7 +25936,7 @@ ion-spinner * {
 }
 
 ion-select {
-  max-width: 50%;
+  max-width: 60%;
 }
 
 .invalid {
@@ -25997,7 +25997,7 @@ page-overview .expenses-header {
 page-overview .expenses-list-header {
   height: 2.4rem;
   min-height: 0;
-  border-bottom: none;
+  border: none;
   font-size: 1rem;
   font-weight: 600;
 }
@@ -26017,8 +26017,11 @@ page-overview .expense-item .expense-amount {
   -ms-flex: 1;
   flex: 1;
   display: inline-block;
-  width: 25%;
+  width: 26%;
   font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 page-overview .expense-item .expense-name {
@@ -26027,7 +26030,7 @@ page-overview .expense-item .expense-name {
   -ms-flex: 2;
   flex: 2;
   display: inline-block;
-  width: 75%;
+  width: 74%;
 }
 
 page-overview #income {
@@ -26077,4 +26080,5 @@ page-overview .add-expense-cta {
 
 page-overview .add-expense-cta .add-expense-button {
   padding: 0 7em;
+  height: 3.5rem;
 }

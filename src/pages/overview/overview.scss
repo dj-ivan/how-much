@@ -48,7 +48,7 @@ page-overview {
     .expenses-list-header {
         height: 2.4rem;
         min-height: 0;
-        border-bottom: none;
+        border: none;
         font-size: 1rem;
         font-weight: 600;
     }
@@ -61,14 +61,17 @@ page-overview {
         .expense-amount {
             flex: 1;
             display: inline-block;
-            width: 25%;
+            width: 26%;
             font-weight: 700;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
 
         .expense-name {
             flex: 2;
             display: inline-block;
-            width: 75%;
+            width: 74%;
         }
     }
 
@@ -117,6 +120,7 @@ page-overview {
 
         .add-expense-button {
             padding: 0 7em;
+            height: 3.5rem;
         }
     }
 }
