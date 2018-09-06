@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
-import { OverviewPage } from '../overview/overview';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-home',
@@ -40,7 +40,7 @@ export class HowMuch {
     this.budgetService.setNewStartingBudget(+strippedValue);
     this.budgetService.setBudgetFrequency(+this.userForm.value.budgetLength);
 
-    this.navCtrl.setRoot(OverviewPage);
+    this.navCtrl.setRoot(TabsPage);
   }
 
 }
