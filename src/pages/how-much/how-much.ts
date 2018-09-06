@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
-import { BudgetFrequency } from '../../models/budget-model';
 import { TabsPage } from '../tabs/tabs';
 
 @Component({
@@ -14,22 +13,19 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class HowMuch {
   public userForm: FormGroup;
-  public textBoxVisible: boolean; 
+  public textBoxVisible: boolean;
   public submitAttempt = false;
+  public showCustomDaysInput = false;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private budgetService: BudgetService) {
-    this.textBoxVisible = false;
-    setTimeout(() => {
-      this.showTextBox();
-    }, 2000);
+  constructor(
+    public navCtrl: NavController,
+    private formBuilder: FormBuilder,
+    private budgetService: BudgetService
+  ) {
     this.userForm = this.formBuilder.group({
       budgetAmount: ['', Validators.required],
       budgetLength: ['', Validators.required]
     });
-  }
-
-  public showTextBox() {
-    this.textBoxVisible = true;
   }
 
   public submitForm() {
@@ -37,27 +33,14 @@ export class HowMuch {
 
     if (!this.userForm.valid) {
       return;
-  }
+    }
 
     let strippedValue = this.userForm.value.budgetAmount.toString().replace('$','');
     strippedValue = strippedValue.replace(/,/g,'');
     this.budgetService.setNewStartingBudget(+strippedValue);
-    switch (this.userForm.value.budgetLength) {
-      case 'w':
-      this.budgetService.setBudgetFrequency(BudgetFrequency.WEEKLY);
-      break;
+    this.budgetService.setBudgetFrequency(+this.userForm.value.budgetLength);
 
-      case 'bi':
-      this.budgetService.setBudgetFrequency(BudgetFrequency.BIWEEKLY);
-      break;
-
-      case 'm':
-      this.budgetService.setBudgetFrequency(BudgetFrequency.MONTHLY);
-      break;
-
-      default:
-      break;
-    }
     this.navCtrl.setRoot(TabsPage);
   }
+
 }

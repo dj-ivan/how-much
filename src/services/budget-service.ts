@@ -17,7 +17,7 @@ export class BudgetService {
         categoryId: 1
       } as Category,
       {
-        name: 'Restaurants',
+        name: 'Restaurants & Bars',
         categoryId: 2
       } as Category,
       {
@@ -47,6 +47,14 @@ export class BudgetService {
       {
         name: 'Household Items',
         categoryId: 9
+      } as Category,
+      {
+        name: 'Services',
+        categoryId: 10
+      } as Category,
+      {
+        name: 'Other',
+        categoryId: 11
       } as Category
     ];
   }
@@ -123,10 +131,10 @@ export class BudgetService {
     this._updateBudget();
   }
 
-  public setBudgetFrequency(freq: BudgetFrequency) {
-    console.log('budgetService: Setting New Budget Frequency', freq);
+  public setBudgetFrequency(days: number) {
+    console.log('budgetService: Setting New Budget Frequency', days);
     let budget = this.cache.budget;
-    budget.budgetFrequency = freq;
+    budget.budgetFrequency = days;
     budget.budgetEndDate = this._calculateBudgetEndDate(budget);
     this.cache.budget = budget;
     this._updateBudget();

@@ -2,24 +2,35 @@
   <img class="header-img" src="./../../assets/imgs/cutback-name-white.png" padding>
   <h1 class="create-budget">Create a budget</h1>
   <div class="budget-inputs-outer-container">
-      <div class="budget-inputs-inner-container">
-        <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">
-          <div class="budget-length-title">How long would you like to budget your money?</div>
-          <ion-segment class="frequency-container" formControlName="budgetLength">
-            <ion-segment-button class="segment-button" [value]="'w'">
-              Weekly
-            </ion-segment-button>
-            <ion-segment-button [value]="'bi'">
-              Bi-Weekly
-            </ion-segment-button>
-          </ion-segment>
-          <div class="budget-amount-title">How much money would you like to spend?</div>
-            <ion-input class="budget-amount-input" [class.invalid]="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)" type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, type: 'num', decimalCaracter: '.', thousand: ','}" formControlName="budgetAmount"></ion-input>
-            <div class="error" *ngIf="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)">
-                Amount is required.
-              </div>
-        </form>
-      </div>
+    <div class="budget-inputs-inner-container">
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">
+        <div class="budget-length-title">How long would you like to budget your money?</div>
+        <ion-segment class="frequency-container" formControlName="budgetLength">
+          <ion-segment-button class="segment-button" [value]="7" (click)="showCustomDaysInput = false">
+            7 Days
+          </ion-segment-button>
+          <ion-segment-button [value]="14" (click)="showCustomDaysInput = false">
+            14 Days
+          </ion-segment-button>
+          <ion-segment-button [value]="1" (click)="showCustomDaysInput = true">
+            Other
+          </ion-segment-button>
+        </ion-segment>
+        <!-- Custom Length -->
+        <div class="custom-days-container" *ngIf="showCustomDaysInput">
+          <div class="custom-days-title">Enter Length In Days</div>
+          <ion-input class="custom-days-input" type="tel" min="1" max="3" clearOnEdit formControlName="budgetLength"></ion-input>
+        </div>
+        <!-- Amount -->
+        <div class="budget-amount-title">How much money would you like to spend?</div>
+        <ion-input class="budget-amount-input" [class.invalid]="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)"
+          type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, type: 'num', decimalCaracter: '.', thousand: ','}"
+          formControlName="budgetAmount"></ion-input>
+        <div class="error" *ngIf="!userForm.controls.budgetAmount.valid && (userForm.controls.budgetAmount.dirty || submitAttempt)">
+          Amount is required.
+        </div>
+      </form>
+    </div>
   </div>
 
   <button ion-button *ngIf="userForm.valid" class="cta-button" (click)="submitForm()">

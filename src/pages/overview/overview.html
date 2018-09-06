@@ -12,7 +12,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-card class="budget" [ngClass]="budgetStatus">
     <ion-card-header class="card-header">
       LEFT TO SPEND
@@ -48,19 +48,21 @@
   <ion-grid class="expenses-container">
     <div class="expenses-header">Expenses</div>
     <ion-row>
-      <ion-col col-12>
-      </ion-col>
+      <ion-item-group class="add-expense-cta">
+        <button class="add-expense-button" ion-button (click)="showExpenseModal()">Add Expense</button>
+      </ion-item-group>
     </ion-row>
     <ion-row *ngIf="expenses.length > 0">
       <ion-col col-12>
         <div class="expenses">
           <ion-item-group>
             <div *ngFor="let expense of expenses; let idx = index;">
-              <ion-list-header color="light" *ngIf="idx === 0 || firstDateIsOlder(expenses[idx].date, expenses[idx-1].date)">{{expense.date
+              <ion-list-header class="expenses-list-header" color="light" *ngIf="idx === 0 || firstDateIsOlder(expenses[idx].date, expenses[idx-1].date)">{{expense.date
                 | date:'EEEE, MMMM d'}}</ion-list-header>
               <ion-item class="expense-item" (click)="showExpenseModal(expense)">
-                <ion-label ion-text ion-start>{{expense.amount | currency}} - {{expense.name}}</ion-label>
-                <button ion-button outline item-end >Edit</button>
+                <span class="expense-amount">{{expense.amount | currency}}</span>
+                <span class="expense-name">{{expense.name}}</span>
+                <button ion-button outline item-end>Edit</button>
               </ion-item>
             </div>
           </ion-item-group>
@@ -68,10 +70,5 @@
       </ion-col>
     </ion-row>
     <div *ngIf="expenses.length === 0">Lets Add Some Expenses</div>
-    <ion-row>
-        <ion-item-group class="add-expense-cta">
-            <button class="add-expense-button" ion-button (click)="showExpenseModal()">Add Expense</button>
-          </ion-item-group>
-    </ion-row>
   </ion-grid>
 </ion-content>

@@ -1,5 +1,4 @@
 page-overview {
-    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     text-align: center;
     color: #7f7e7e;
@@ -45,6 +44,37 @@ page-overview {
         text-align: left;
     }
 
+    .expenses-list-header {
+        height: 2.4rem;
+        min-height: 0;
+        border: none;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .expense-item {
+        padding-left: 0;
+        border-bottom: 0.55px solid #c8c7cc;
+
+        .label {
+            display: flex;
+            flex-flow: nowrap;
+            justify-content: space-around;
+        }
+
+        .expense-amount {
+            flex: 1;
+            font-weight: 700;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .expense-name {
+            flex: 3;
+        }
+    }
+
     #income {
         background-color: #338a3e;
     }
@@ -81,14 +111,16 @@ page-overview {
     }
 
     .expenses-container {
-        padding-top: 3rem;
+        padding-top: 2rem;
     }
 
     .add-expense-cta {
-      padding-top: 3rem;
-      margin: auto;
-      .add-expense-button {
-        padding: 0 7em;
-      }
+        padding: 1rem 0;
+        margin: auto;
+
+        .add-expense-button {
+            padding: 0 7em;
+            height: 3.5rem;
+        }
     }
 }
