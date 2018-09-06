@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Add Expense
+      {{id !== '' ? 'Edit' : 'Add'}} Expense
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
         <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        <ion-icon name="md-close" showWhen="android"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -14,40 +14,38 @@
 
 <ion-content>
   <ion-list>
-      <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="form-container">
-        <ion-item [class.invalid]="!userForm.controls.expenseName.valid && (userForm.controls.expenseName.dirty || submitAttempt)">
-          <ion-label floating>Name</ion-label>
-          <ion-input formControlName="expenseName" type="text" [(ngModel)]="name"></ion-input>
-        </ion-item>
-        <div class="error" *ngIf="!userForm.controls.expenseName.valid && (userForm.controls.expenseName.dirty || submitAttempt)">
-            Name is required.
-          </div>
-        <ion-item [class.invalid]="!userForm.controls.expenseAmount.valid && (userForm.controls.expenseAmount.dirty || submitAttempt)" >
-          <ion-label floating>Amount</ion-label>
-          <ion-input formControlName="expenseAmount" type="tel" [(ngModel)]="amount" [brmasker]="{len:11, money: true, type: 'num', decimalCaracter: '.', thousand: ','}"></ion-input>
-        </ion-item>
-        <div class="error" *ngIf="!userForm.controls.expenseAmount.valid && (userForm.controls.expenseAmount.dirty || submitAttempt)">
-            Amount is required.
-          </div>
-          <ion-item [class.invalid]="!userForm.controls.expenseCategory.valid && (userForm.controls.expenseCategory.dirty || submitAttempt)">
-              <ion-label>Category</ion-label>
-              <ion-select formControlName="expenseCategory" [(ngModel)]="selectedCategory" [placeholder]="selectedCategory !== null ? selectedCategory.name : ''">
-                <div *ngFor="let category of categories">
-                  <ion-option [value]="category">{{category.name}}</ion-option>
-                </div>
-              </ion-select>
-            </ion-item>
-            <div class="error" *ngIf="!userForm.controls.expenseCategory.valid && (userForm.controls.expenseCategory.dirty || submitAttempt)">
-                Category is required.
-              </div>
-        <!-- <ion-item>
+    <form [formGroup]="expenseForm" (ngSubmit)="submitForm()" class="form-container">
+      <ion-item [class.invalid]="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">
+        <ion-label stacked>Name</ion-label>
+        <ion-input autocomplete="true" formControlName="expenseName" type="text"></ion-input>
+      </ion-item>
+      <div class="error" *ngIf="!expenseForm.controls.expenseName.valid && (expenseForm.controls.expenseName.dirty || submitAttempt)">
+        Name is required.
+      </div>
+      <ion-item [class.invalid]="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">
+        <ion-label stacked>Amount</ion-label>
+        <ion-input formControlName="expenseAmount" type="tel" placeholder="$0.00" [brmasker]="{len:11, money: true, decimalCaracter: '.', thousand: ','}"></ion-input>
+      </ion-item>
+      <div class="error" *ngIf="!expenseForm.controls.expenseAmount.valid && (expenseForm.controls.expenseAmount.dirty || submitAttempt)">
+        Amount is required.
+      </div>
+      <ion-item [class.invalid]="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">
+        <ion-label>Category</ion-label>
+        <ion-select formControlName="expenseCategory">
+          <ion-option *ngFor="let category of categories" [value]="category.categoryId">{{category.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <div class="error" *ngIf="!expenseForm.controls.expenseCategory.valid && (expenseForm.controls.expenseCategory.dirty || submitAttempt)">
+        Category is required.
+      </div>
+      <!-- <ion-item>
           <ion-label>Date</ion-label>
           <ion-datetime displayFormat="DDDD MMM D, YYYY" [(ngModel)]="selectedDate"></ion-datetime>
         </ion-item> -->
-      </form>
+    </form>
   </ion-list>
   <div>
     <button *ngIf="id !== ''" class="remove-expense" ion-button color="danger" (click)="removeExpense()">Remove Expense</button>
-    <button class="add-expense" ion-button (click)="addExpense()">Add Expense</button>
+    <button class="add-expense" ion-button (click)="addExpense()">{{id !== '' ? 'Edit' : 'Add'}} Expense</button>
   </div>
 </ion-content>

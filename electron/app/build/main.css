@@ -26003,7 +26003,7 @@ page-overview .expenses-container {
 }
 
 page-overview .add-expense-cta {
-  padding-top: 3rem;
+  padding: 1rem 0;
   margin: auto;
 }
 

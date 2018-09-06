@@ -19,7 +19,7 @@
     }
 
     .budget-length-title {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         font-size: 4vw;
         padding-top: 2rem;
         text-align: center;
@@ -37,10 +37,32 @@
         }
     }
 
+    .custom-days-container {
+        padding-top: 3rem;
+
+        .custom-days-title {
+            margin-bottom: 1rem;
+            font-size: 4vw;
+            text-align: center;
+        }
+
+        .custom-days-input {
+            color: #f7f7f7;
+            border: 1px solid #193522;
+            width: 30%;
+            margin: 0 auto;
+            border-radius: 6px;
+
+            .text-input {
+                margin-left: 1rem;
+            }
+        }
+    }
+
     .budget-amount-title {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         font-size: 4vw;
-        padding-top: 5rem;
+        padding-top: 3rem;
         text-align: center;
     }
 
@@ -50,11 +72,15 @@
         width: 50%;
         margin: 0 auto;
         border-radius: 6px;
+
+        .text-input {
+            margin-left: 1rem;
+        }
     }
 
     .cta-button {
         display: block;
-        margin: 17rem auto;
+        margin: 7rem auto;
         padding: 0 27vw;
         font-size: 4vw;
     }
@@ -102,6 +128,15 @@
             .segment-button {
                 height: 4rem;
                 font-size: 2.5rem;
+            }
+        }
+
+        .custom-days-container {
+            .custom-days-title {
+                font-size: 3rem;
+            }
+            .custom-days-input{
+              font-size: 2rem;
             }
         }
 

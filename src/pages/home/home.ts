@@ -33,7 +33,7 @@ export class HomePage {
   }
 
   public goToSlide(idx: number) {
-    this.slides.slideTo(idx, 500);
+    this.slides.slideTo(idx, 350);
   }
 
   public navigateToSetup() {

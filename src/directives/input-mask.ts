@@ -50,6 +50,14 @@ export class BrMaskerIonic3 implements OnInit, ControlValueAccessor {
 
   }
 
+  @HostListener('ionFionChangeocus', ['$event'])
+  ionChange(event: any): void {
+    const value = this.returnValue(event.value);
+    this.writeValue(value);
+    event.value = value;
+
+  }
+
   constructor(private _renderer: Renderer, private _elementRef: ElementRef) {
   }
 
