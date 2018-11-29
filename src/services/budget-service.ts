@@ -17,7 +17,7 @@ export class BudgetService {
         categoryId: 1
       } as Category,
       {
-        name: 'Restaurants & Bars',
+        name: 'Restaurants',
         categoryId: 2
       } as Category,
       {
@@ -55,6 +55,14 @@ export class BudgetService {
       {
         name: 'Other',
         categoryId: 11
+      } as Category,
+      {
+        name: 'Travel',
+        categoryId: 12
+      } as Category,
+      {
+        name: 'Bars',
+        categoryId: 13
       } as Category
     ];
   }

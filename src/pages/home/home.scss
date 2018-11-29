@@ -20,8 +20,16 @@
     padding-top: 1rem;
     z-index: 10;
     width: 30vw;
-
     @include center(true, false);
+}
+
+.skip-link {
+  position: absolute;
+  color: #f7f7f7;
+  z-index: 2;
+  right: 0;
+  font-size: 1.7rem;
+  padding: 1rem 2rem;
 }
 
 .home-slide-container {
@@ -48,6 +56,7 @@
 
     .next-button {
         @include center(true, false);
+
         bottom: 4rem;
         padding: 0 2em;
     }
@@ -71,8 +80,8 @@
     }
 
     .swiper-pagination-bullet-active {
-      background: #66bb6a;
-  }
+        background: #66bb6a;
+    }
 }
 
 .spinner {
