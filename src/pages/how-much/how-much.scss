@@ -6,6 +6,13 @@
     background-size: cover;
     color: #f7f7f7;
 
+    .nav-back {
+        position: absolute;
+        display: inline-block;
+        font-size: 2.4em;
+        padding: 1rem 2rem;
+    }
+
     .header-img {
         margin: 0 auto;
         display: block;
@@ -135,8 +142,9 @@
             .custom-days-title {
                 font-size: 3rem;
             }
-            .custom-days-input{
-              font-size: 2rem;
+
+            .custom-days-input {
+                font-size: 2rem;
             }
         }
 
