@@ -4,6 +4,7 @@ import { fadeInAnimation } from '../../app/_animations/index';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { BudgetService } from '../../services/budget-service';
 import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-home',
@@ -41,6 +42,10 @@ export class HowMuch {
     this.budgetService.setBudgetFrequency(+this.userForm.value.budgetLength);
 
     this.navCtrl.setRoot(TabsPage);
+  }
+
+  public navigateToHomePage() {
+    this.navCtrl.setRoot(HomePage);
   }
 
 }
