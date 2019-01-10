@@ -16,8 +16,6 @@ export class AnalyticsPage {
     public chartData = new Map<string,number>();
 
   constructor(private _budgetService: BudgetService) {
-      this.getSortedExpenses();
-      this.getChartData();
   }
 
   public getSortedExpenses() {
@@ -69,7 +67,13 @@ export class AnalyticsPage {
       ];
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    this.expenses = [];
+    this.categories = this._budgetService.getCategories();
+    this.myChart = [];
+    this.chartData = new Map<string,number>();
+    this.getSortedExpenses();
+    this.getChartData();
       let chartLabels = [];
       let chartData = [];
       let chartColors = this.predefinedColorValues();
