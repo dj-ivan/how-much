@@ -47,11 +47,33 @@ export class AnalyticsPage {
         return "rgba(" + r + ", " + g + ", " + b;
   }
 
+  public predefinedColorValues() {
+      return ["rgba(151, 217, 255, 1)"
+      ,"rgba(27, 170, 47, 1)"
+      ,"rgba(255, 236, 0, 1)"
+      ,"rgba(255, 115, 0, 1)"
+      ,"rgba(255, 0, 0, 1)"
+      ,"rgba(224, 30, 132, 1)"
+      ,"rgba(198, 88, 208, 1)"
+      ,"rgba(142, 108, 239, 1)"
+      ,"rgba(156, 70, 208, 1)"
+      ,"rgba(131, 153, 235, 1)"
+      ,"rgba(0, 126, 214, 1)"
+      ,"rgba(124, 221, 221, 1)"
+      ,"rgba(95, 183, 212, 1)"
+      ,"rgba(38, 215, 174, 1)"
+      ,"rgba(45, 203, 117, 1)"
+      ,"rgba(82, 215, 38, 1)"
+      ,"rgba(213, 243, 11, 1)"
+      ,"rgba(255, 175, 0, 1)"
+      ];
+  }
+
   ionViewDidLoad() {
       let chartLabels = [];
       let chartData = [];
-      let chartColors = [];
-      let chartBorderColors = [];
+      let chartColors = this.predefinedColorValues();
+      let chartBorderColors = this.predefinedColorValues();
 
       this.expenses.forEach(e => {
         if(chartLabels.indexOf(e.category.name) == -1) {
