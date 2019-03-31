@@ -6,6 +6,7 @@ import { Expense } from '../../models/expense-model';
 import { ModalController } from 'ionic-angular';
 import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
 import { compareDesc, format } from 'date-fns';
+import { POSSIBLE_COMPLETION_MESSAGE } from '../../constants/cutback-constants';
 
 @Component({
   selector: 'page-overview',
@@ -20,6 +21,8 @@ export class OverviewPage {
   public expenses: Expense[] = [];
   public budget: Budget;
   public budgetStatus = BudgetStatus.GOOD;
+  public completionMessage = '';
+  public showCompletionModal = false;
 
   constructor(
     public navCtrl: NavController,
@@ -51,6 +54,25 @@ export class OverviewPage {
     this.totalSpent = this.budget.totalAmountSpent;
     this.sortExpensesDesc();
     this.updateBudgetStatus();
+    //this.showBudgetComleteModalIfApplicable();
+  }
+
+  public showBudgetComleteModalIfApplicable(){
+    if (this.budget.budgetEndDate.getTime() < new Date().getTime()) {
+      this.showCompletionModal = true;
+      if (this.budget.remainingBudget / this.budget.startingBudget >= .66) {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedVeryPositive;
+      }
+      else if (this.budget.remainingBudget > 0) {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedPositive;
+      }
+      else if (this.budget.remainingBudget / this.budget.startingBudget >= 33) {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedVeryNegative;
+      }
+      else {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedNegative;
+      }
+    }
   }
 
   public showExpenseModal(expense: Expense) {
