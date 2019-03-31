@@ -1,4 +1,5 @@
 import { AddExpenseModal } from './../pages/modals/add-expense-modal/add-expense-modal';
+import { BudgetCompleteModal } from './../pages/modals/budget-complete-modal/budget-complete-modal';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -30,6 +31,7 @@ import { AnalyticsPage } from '../pages/analytics/analytics';
     HowMuch,
     OverviewPage,
     AddExpenseModal,
+    BudgetCompleteModal,
     BrMaskerIonic3,
     TabsPage,
     AboutUsPage,
@@ -49,6 +51,7 @@ import { AnalyticsPage } from '../pages/analytics/analytics';
     HowMuch,
     OverviewPage,
     AddExpenseModal,
+    BudgetCompleteModal,
     TabsPage,
     AboutUsPage,
     AnalyticsPage

@@ -1,0 +1,21 @@
+.add-expense {
+  position: absolute;
+  right: 2rem;
+}
+
+.remove-expense {
+  position: absolute;
+  left: 2rem;
+}
+
+ion-select {
+  max-width: 60%;
+}
+
+.invalid {
+  border: 1px solid #ea6153;
+}
+.error {
+  padding-left: 16px;
+  color: #ea6153;
+}

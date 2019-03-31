@@ -2,10 +2,10 @@
 export const FEATURE_TOGGLES_URL = 'FeatureTogglesUrl';
 
 export let POSSIBLE_COMPLETION_MESSAGE = {
-    completedVeryPositive: 'Congrats! You completed your budget with $~ left to spare! Let\'s create a goal and budget to keep up the good work!',
-    completedPositive: 'You did it! You completed your budget with some money to spare! Time to create that next budget?',
-    completedNegative: 'You did a great job! Time to CutBack some more and create a new budget!',
-    completedVeryNegative: 'You did great! It\'s time to create a new budget to help your spending!'
+    completedVeryPositive: 'Congrats! You completed your budget with $~ left to spare! Let\'s create a new goal and budget to keep up the good work!',
+    completedPositive: 'Well done! You completed your budget with $~ to spare! Time to create that next budget and continue to save!',
+    completedNegative: 'You did a great job! You completed your budget, just slightly over! Time to CutBack some more and create a new budget!',
+    completedVeryNegative: 'You did great! You completed over budget, but now is the time to CutBack even more! It\'s time to create a new budget to help with your spending!'
 };
 
 
