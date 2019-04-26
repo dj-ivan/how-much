@@ -5,7 +5,9 @@ import { NavController, NavParams, Events } from 'ionic-angular';
 import { Expense } from '../../models/expense-model';
 import { ModalController } from 'ionic-angular';
 import { AddExpenseModal } from '../modals/add-expense-modal/add-expense-modal';
+import { BudgetCompleteModal } from '../modals/budget-complete-modal/budget-complete-modal';
 import { compareDesc, format } from 'date-fns';
+import { POSSIBLE_COMPLETION_MESSAGE } from '../../constants/cutback-constants';
 
 @Component({
   selector: 'page-overview',
@@ -20,6 +22,8 @@ export class OverviewPage {
   public expenses: Expense[] = [];
   public budget: Budget;
   public budgetStatus = BudgetStatus.GOOD;
+  public completionMessage = '';
+  public completionModalActive = false;
 
   constructor(
     public navCtrl: NavController,
@@ -51,12 +55,43 @@ export class OverviewPage {
     this.totalSpent = this.budget.totalAmountSpent;
     this.sortExpensesDesc();
     this.updateBudgetStatus();
+    this.buildAndShowBudgetComleteModalIfApplicable();    
+  }
+
+  public buildAndShowBudgetComleteModalIfApplicable(){
+    if (!this.completionModalActive && new Date(this.budget.budgetEndDate).getTime() < new Date().getTime()) {
+      this.completionModalActive = true;
+      if (this.budget.remainingBudget / this.budget.startingBudget >= .66) {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedVeryPositive;
+      }
+      else if (this.budget.remainingBudget > 0) {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedPositive;
+      }
+      else if (this.budget.remainingBudget / this.budget.startingBudget <= -1.5) {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedVeryNegative;
+      }
+      else {
+        this.completionMessage = POSSIBLE_COMPLETION_MESSAGE.completedNegative;
+      }
+      this.completionMessage = this.injectDollarAmountIntoString(this.completionMessage);
+      this.showCompleteModal();
+    }
+  }
+
+  public injectDollarAmountIntoString(message:string) {
+    return message.replace('~',this.budget.remainingBudget.toString());
   }
 
   public showExpenseModal(expense: Expense) {
     const modal = expense
       ? this.modalCtrl.create(AddExpenseModal, { expense })
       : this.modalCtrl.create(AddExpenseModal);
+    modal.present();
+  }
+
+  public showCompleteModal() {
+    let message = this.completionMessage;
+    const modal = this.modalCtrl.create(BudgetCompleteModal, { message } );
     modal.present();
   }
 

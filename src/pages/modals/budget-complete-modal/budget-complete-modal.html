@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Budget Complete!
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br/>
+  <div>
+    <h1 style="text-align: center">{{completionMessage}}</h1>
+  </div>
+
+  <br/>
+  <br/>
+
+  <div>
+    <button class="remove-expense" style="bottom: 10px" ion-button color="danger" (click)="dismiss()">No Thanks</button>
+    <button class="add-expense" style="bottom: 10px" ion-button (click)="createNewBudget()">Create New Budget</button>
+  </div>
+</ion-content>
